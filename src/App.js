@@ -3,6 +3,8 @@ import logo from './logo.svg'
 import './App.css'
 import firebase from 'firebase'
 
+import StartGameButton from './components/StartGameButton'
+
 var config = {
   apiKey: 'AIzaSyDjC1dJFrFpBTiXlCGbMR4YY48RtfOTZV8',
   authDomain: 'cs575-for-sale.firebaseapp.com',
@@ -39,6 +41,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <StartGameButton />
       </div>
     )
   }
