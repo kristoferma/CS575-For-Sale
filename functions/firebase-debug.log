@@ -1,0 +1,29 @@
+[debug] [2017-10-27T16:56:33.047Z] ----------------------------------------------------------------------
+[debug] [2017-10-27T16:56:33.050Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only functions
+[debug] [2017-10-27T16:56:33.050Z] CLI Version:   3.13.1
+[debug] [2017-10-27T16:56:33.050Z] Platform:      darwin
+[debug] [2017-10-27T16:56:33.050Z] Node Version:  v8.5.0
+[debug] [2017-10-27T16:56:33.051Z] Time:          Fri Oct 27 2017 12:56:33 GMT-0400 (EDT)
+[debug] [2017-10-27T16:56:33.051Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-27T16:56:33.074Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-27T16:56:33.074Z] > authorizing via signed-in user
+[debug] [2017-10-27T16:56:33.077Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cs575-for-sale  
+ Fri Oct 27 2017 12:56:33 GMT-0400 (EDT)
+[debug] [2017-10-27T16:56:33.401Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-27T16:56:33.402Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/cs575-for-sale/tokens  
+ Fri Oct 27 2017 12:56:33 GMT-0400 (EDT)
+[debug] [2017-10-27T16:56:33.725Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/kristofermasson/Desktop/Drexel/cs575-for-sale'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-10-27T16:56:34.186Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/cs575-for-sale  
+ Fri Oct 27 2017 12:56:34 GMT-0400 (EDT)
+[debug] [2017-10-27T16:56:34.186Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/cs575-for-sale/apiKeys  
+ Fri Oct 27 2017 12:56:34 GMT-0400 (EDT)
+[debug] [2017-10-27T16:56:34.436Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-27T16:56:34.534Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: createNewGame: http://localhost:5000/cs575-for-sale/us-central1/createNewGame
+[info] ✔  functions: addMessage: http://localhost:5000/cs575-for-sale/us-central1/addMessage
+[info] ✔  functions: joinGame: http://localhost:5000/cs575-for-sale/us-central1/joinGame

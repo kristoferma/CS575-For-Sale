@@ -3,6 +3,52 @@ const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 admin.initializeApp(functions.config().firebase)
 
+const initalGameState = (numberOfPlayers, creatorUserId) => {
+  return {
+    phase1: Array(30).fill(0),
+    money:
+      numberOfPlayers <= 4
+        ? Array(numberOfPlayers).fill(18)
+        : Array(numberOfPlayers).fill(14),
+    numberOfTurn: 0,
+    currentPlayerId: 0,
+    players: [creatorUserId],
+    playersThatHavePlayed: Array(numberOfPlayers).fill(false),
+    phase2: [
+      0,
+      0,
+      2,
+      2,
+      3,
+      3,
+      4,
+      4,
+      5,
+      5,
+      6,
+      6,
+      7,
+      7,
+      8,
+      8,
+      9,
+      9,
+      10,
+      10,
+      11,
+      11,
+      12,
+      12,
+      13,
+      13,
+      14,
+      14,
+      15,
+      15
+    ]
+  }
+}
+
 // Take the text parameter passed to this HTTP endpoint and insert it into the
 // Realtime Database under the path /messages/:pushId/original
 exports.addMessage = functions.https.onRequest((req, res) => {
@@ -18,3 +64,21 @@ exports.addMessage = functions.https.onRequest((req, res) => {
       res.redirect(303, snapshot.ref)
     })
 })
+
+exports.createNewGame = functions.https.onRequest((req, res) => {
+  const db = admin.database()
+  //const userId = req.query.userId;
+  //const playerCount = req.query.playerCount;
+  const { userId, playerCount } = req.query
+
+  const gamesRef = db.ref('games')
+  const usersRef = db.ref('users/' + userId)
+  const newGameRef = gamesRef.push()
+  usersRef.set({ currentGameId: newGameRef.key })
+  const newGameState = initalGameState(playerCount, userId)
+  newGameRef.set(newGameState).then(() => {
+    res.redirect(303, 'fart')
+  })
+})
+
+exports.joinGame = functions.https.onRequest((req, res) => {})
