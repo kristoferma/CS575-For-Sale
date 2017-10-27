@@ -73,4 +73,23 @@ exports.createNewGame = functions.https.onRequest((req, res) => {
     })
 })
 
-exports.joinGame = functions.https.onRequest((req, res) => {})
+// This might have to change
+exports.joinGame = functions.https.onRequest((req, res) => {
+  const db = admin.database()
+  const { userId, gameId } = req.query
+
+  const gamePlayersRef = db.ref(`games/${gameId}/players`)
+  const usersRef = db.ref(`users/${userId}`)
+  usersRef
+    .set({ currentGameId: gameId })
+    .then(() => {
+      return gamePlayersRef.push(userId)
+    })
+    .then(() => {
+      res.sendStatus(200)
+    })
+    .catch(err => {
+      console.error(err)
+      res.send(500)
+    })
+})
