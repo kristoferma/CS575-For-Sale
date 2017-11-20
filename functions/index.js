@@ -67,15 +67,11 @@ exports.createNewGame = functions.https.onRequest((req, res) =>
         return newGameRef.set(newGameState)
       })
       .then(() => {
-        cors(req, res, () =>
-          res.status(200).send(JSON.stringify({ status: 200 }))
-        )
+        cors(req, res, () => res.status(200).send(newGameRef.key))
       })
       .catch(err => {
         console.error(err)
-        cors(req, res, () =>
-          res.status(500).send(JSON.stringify({ status: 500 }))
-        )
+        cors(req, res, () => res.status(500).send('Could not create new game'))
       })
   })
 )
@@ -88,6 +84,7 @@ exports.joinGame = functions.https.onRequest((req, res) =>
 
     const gamePlayersRef = db.ref(`games/${gameId}/players`)
     const usersRef = db.ref(`users/${userId}`)
+
     usersRef
       .set({ currentGameId: gameId })
       .then(() => {

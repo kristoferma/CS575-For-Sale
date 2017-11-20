@@ -15,13 +15,16 @@ export default class StartGameButton extends Component {
     event.preventDefault()
     fetch(
       `http://localhost:5000/cs575-for-sale/us-central1/createNewGame/?userId=${this
-        .state.userId}&playerCount=${this.state.playerCount}`,
-      { mode: 'cors' }
-    ).then(data => {
-      console.log(data)
-      if (data.status === 200) console.log('could create game')
-      else console.log('could not create game')
-    })
+        .state.userId}&playerCount=${this.state.playerCount}`
+    )
+      .then(response => response.text())
+      .then(gameID => {
+        if (gameID) {
+          window.location = '/game/' + gameID
+        } else {
+          this.setState({ error: 'Could not create new game' })
+        }
+      })
   }
   render() {
     return (
@@ -53,6 +56,7 @@ export default class StartGameButton extends Component {
         >
           Start New Game
         </button>
+        <p>{this.state.error}</p>
       </form>
     )
   }
