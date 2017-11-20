@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 export default class StartGameButton extends Component {
   constructor(props) {
@@ -12,11 +11,17 @@ export default class StartGameButton extends Component {
   handleInputChange(event) {
     this.setState({ [event.target.name]: event.target.value })
   }
-  handleClick() {
+  handleClick(event) {
+    event.preventDefault()
     fetch(
-      `http://localhost:5000/cs575-for-sale/us-central1/createNewGame/userId=${this
-        .state.userId}&playerCount=${this.state.playerCount}`
-    )
+      `http://localhost:5000/cs575-for-sale/us-central1/createNewGame/?userId=${this
+        .state.userId}&playerCount=${this.state.playerCount}`,
+      { mode: 'cors' }
+    ).then(data => {
+      console.log(data)
+      if (data.status === 200) console.log('could create game')
+      else console.log('could not create game')
+    })
   }
   render() {
     return (
@@ -25,7 +30,7 @@ export default class StartGameButton extends Component {
         <input
           name="userId"
           id="userId"
-          type="number"
+          type="text"
           onChange={this.handleInputChange.bind(this)}
           value={this.state.userId}
         />
@@ -41,13 +46,13 @@ export default class StartGameButton extends Component {
           value={this.state.playerCount}
         />
         <button
-          onClick={this.handleClick}
-          disabled={this.state.userId || this.state.playerCount}
+          onClick={this.handleClick.bind(this)}
+          disabled={
+            this.state.userId.length === 0 || this.state.playerCount < 3
+          }
         >
           Start New Game
         </button>
-
-        <Link to="/game/-KxUDLkx6LxHjN1tv2IX">Game</Link>
       </form>
     )
   }

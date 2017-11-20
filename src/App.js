@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import firebase from 'firebase'
 
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 import Header from './components/Header'
 import MainMenu from './components/MainMenu'

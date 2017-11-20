@@ -1,5 +1,7 @@
 const functions = require('firebase-functions')
 
+const cors = require('cors')({ origin: true })
+
 const admin = require('firebase-admin')
 admin.initializeApp(functions.config().firebase)
 
@@ -49,47 +51,54 @@ const initalGameState = (numberOfPlayers, creatorUserId) => {
   }
 }
 
-exports.createNewGame = functions.https.onRequest((req, res) => {
-  const db = admin.database()
-  //const userId = req.query.userId;
-  //const playerCount = req.query.playerCount;
-  const { userId, playerCount } = req.query
-
-  const gamesRef = db.ref('games')
-  const usersRef = db.ref('users/' + userId)
-  const newGameRef = gamesRef.push()
-  usersRef
-    .set({ currentGameId: newGameRef.key })
-    .then(() => {
-      const newGameState = initalGameState(playerCount, userId)
-      return newGameRef.set(newGameState)
-    })
-    .then(() => {
-      res.sendStatus(200)
-    })
-    .catch(err => {
-      console.error(err)
-      res.send(500)
-    })
-})
+exports.createNewGame = functions.https.onRequest((req, res) =>
+  cors(req, res, () => {
+    const db = admin.database()
+    //const userId = req.query.userId;
+    //const playerCount = req.query.playerCount;
+    const { userId, playerCount } = req.query
+    const gamesRef = db.ref('games')
+    const usersRef = db.ref('users/' + userId)
+    const newGameRef = gamesRef.push()
+    return usersRef
+      .set({ currentGameId: newGameRef.key })
+      .then(() => {
+        const newGameState = initalGameState(playerCount, userId)
+        return newGameRef.set(newGameState)
+      })
+      .then(() => {
+        cors(req, res, () =>
+          res.status(200).send(JSON.stringify({ status: 200 }))
+        )
+      })
+      .catch(err => {
+        console.error(err)
+        cors(req, res, () =>
+          res.status(500).send(JSON.stringify({ status: 500 }))
+        )
+      })
+  })
+)
 
 // This might have to change
-exports.joinGame = functions.https.onRequest((req, res) => {
-  const db = admin.database()
-  const { userId, gameId } = req.query
+exports.joinGame = functions.https.onRequest((req, res) =>
+  cors(req, res, () => {
+    const db = admin.database()
+    const { userId, gameId } = req.query
 
-  const gamePlayersRef = db.ref(`games/${gameId}/players`)
-  const usersRef = db.ref(`users/${userId}`)
-  usersRef
-    .set({ currentGameId: gameId })
-    .then(() => {
-      return gamePlayersRef.push(userId)
-    })
-    .then(() => {
-      res.sendStatus(200)
-    })
-    .catch(err => {
-      console.error(err)
-      res.send(500)
-    })
-})
+    const gamePlayersRef = db.ref(`games/${gameId}/players`)
+    const usersRef = db.ref(`users/${userId}`)
+    usersRef
+      .set({ currentGameId: gameId })
+      .then(() => {
+        return gamePlayersRef.push(userId)
+      })
+      .then(() => {
+        res.sendStatus(200)
+      })
+      .catch(err => {
+        console.error(err)
+        res.send(500)
+      })
+  })
+)

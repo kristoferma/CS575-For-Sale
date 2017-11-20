@@ -3,10 +3,6 @@ import StartGameButton from './StartGameButton'
 import JoinGameButton from './JoinGameButton'
 
 class MainMenu extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div>

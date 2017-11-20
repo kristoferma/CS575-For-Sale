@@ -9,7 +9,6 @@ export default class StartGameButton extends Component {
     }
   }
   handleInputChange(event) {
-    console.log(this.state)
     this.setState({ gameID: event.target.value })
   }
   render() {
