@@ -56,16 +56,12 @@ exports.createNewGame = functions.https.onRequest((req, res) =>
     const db = admin.database()
     //const userId = req.query.userId;
     //const playerCount = req.query.playerCount;
-    const { userId, playerCount } = req.query
+    const { userID, playerCount } = req.query
     const gamesRef = db.ref('games')
-    const usersRef = db.ref('users/' + userId)
     const newGameRef = gamesRef.push()
-    return usersRef
-      .set({ currentGameId: newGameRef.key })
-      .then(() => {
-        const newGameState = initalGameState(playerCount, userId)
-        return newGameRef.set(newGameState)
-      })
+    const newGameState = initalGameState(playerCount, userID)
+    return newGameRef
+      .set(newGameState)
       .then(() => {
         cors(req, res, () => res.status(200).send(newGameRef.key))
       })
@@ -76,26 +72,21 @@ exports.createNewGame = functions.https.onRequest((req, res) =>
   })
 )
 
-// This might have to change
 exports.joinGame = functions.https.onRequest((req, res) =>
   cors(req, res, () => {
     const db = admin.database()
-    const { userId, gameId } = req.query
+    const { userID, gameID } = req.query
 
-    const gamePlayersRef = db.ref(`games/${gameId}/players`)
-    const usersRef = db.ref(`users/${userId}`)
+    const gamePlayersRef = db.ref(`games/${gameID}/players`)
 
-    usersRef
-      .set({ currentGameId: gameId })
+    gamePlayersRef
+      .push({ userID })
       .then(() => {
-        return gamePlayersRef.push(userId)
-      })
-      .then(() => {
-        res.sendStatus(200)
+        res.status(200).send(gameID)
       })
       .catch(err => {
         console.error(err)
-        res.send(500)
+        res.status(500).end()
       })
   })
 )

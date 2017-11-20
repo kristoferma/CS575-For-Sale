@@ -3,10 +3,7 @@ import React, { Component } from 'react'
 export default class StartGameButton extends Component {
   constructor(props) {
     super(props)
-    this.state = { userId: '', playerCount: 3 }
-  }
-  componentWillUpdate(nextProps, nextState) {
-    console.log(nextState)
+    this.state = { userID: '', playerCount: 3 }
   }
   handleInputChange(event) {
     this.setState({ [event.target.name]: event.target.value })
@@ -14,8 +11,8 @@ export default class StartGameButton extends Component {
   handleClick(event) {
     event.preventDefault()
     fetch(
-      `http://localhost:5000/cs575-for-sale/us-central1/createNewGame/?userId=${this
-        .state.userId}&playerCount=${this.state.playerCount}`
+      `http://localhost:5000/cs575-for-sale/us-central1/createNewGame/?userID=${this
+        .state.userID}&playerCount=${this.state.playerCount}`
     )
       .then(response => response.text())
       .then(gameID => {
@@ -29,10 +26,10 @@ export default class StartGameButton extends Component {
   render() {
     return (
       <form>
-        <label htmlFor="userId">User ID:</label>
+        <label htmlFor="userID">User ID:</label>
         <input
-          name="userId"
-          id="userId"
+          name="userID"
+          id="userID"
           type="text"
           onChange={this.handleInputChange.bind(this)}
           value={this.state.userId}
@@ -51,7 +48,9 @@ export default class StartGameButton extends Component {
         <button
           onClick={this.handleClick.bind(this)}
           disabled={
-            this.state.userId.length === 0 || this.state.playerCount < 3
+            this.state.userID.length === 0 ||
+            this.state.playerCount < 3 ||
+            this.state.playerCount > 6
           }
         >
           Start New Game
