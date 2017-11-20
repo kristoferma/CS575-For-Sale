@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class StartGameButton extends Component {
   constructor(props) {
@@ -45,6 +46,8 @@ export default class StartGameButton extends Component {
         >
           Start New Game
         </button>
+
+        <Link to="/game/-KxUDLkx6LxHjN1tv2IX">Game</Link>
       </form>
     )
   }
