@@ -25,19 +25,23 @@ export default class StartGameButton extends Component {
   }
   render() {
     return (
-      <form>
-        <label htmlFor="userId">User ID:</label>
+      <form className = "App-StartGameButton">
+      <div className = "div-default">
+        <label htmlFor="userId">User ID:&nbsp;&nbsp;&nbsp;</label> 
         <input
           name="userId"
           id="userId"
+          className = "my-input"
           type="text"
           onChange={this.handleInputChange.bind(this)}
           value={this.state.userId}
         />
-        <label htmlFor="playerCount">Players:</label>
+        <br/>
+        <label htmlFor="playerCount">Players:&nbsp;&nbsp;&nbsp;</label>
         <input
           name="playerCount"
           id="playerCount"
+          className = "my-input"
           type="number"
           step="1"
           min="3"
@@ -45,14 +49,18 @@ export default class StartGameButton extends Component {
           onChange={this.handleInputChange.bind(this)}
           value={this.state.playerCount}
         />
+        <br/><br/>
         <button
           onClick={this.handleClick.bind(this)}
           disabled={
             this.state.userId.length === 0 || this.state.playerCount < 3
           }
-        >
+        className ="btn btn-primary">
           Start New Game
         </button>
+        </div>
+        <br/><br/>
+    
       </form>
     )
   }

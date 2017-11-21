@@ -14,15 +14,19 @@ export default class StartGameButton extends Component {
   render() {
     return (
       <form>
-        <label htmlFor="gameID">Game ID:</label>
+        <div className = "div-default">
+        <label htmlFor="gameID">Game ID:&nbsp;&nbsp;&nbsp;</label>
         <input
           name="gameID"
-          id="gameID"
+          id="gameID" 
           type="text"
+          className = "my-input"
           onChange={this.handleInputChange.bind(this)}
           value={this.state.gameID}
         />
-        <Link to={'/game/' + this.state.gameID}>Game</Link>
+        <br/><br/>
+        <Link to={'/game/' + this.state.gameID}>Join Game</Link>
+      </div>
       </form>
     )
   }

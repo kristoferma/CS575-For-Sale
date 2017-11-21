@@ -6,13 +6,12 @@ class Header extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { title: 'Welcome to React' }
+    this.state = { title: 'FOR SALE' }
   }
 
   render() {
     return (
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-title">{this.state.title}</h1>
       </header>
     )
