@@ -25,40 +25,45 @@ export default class StartGameButton extends Component {
   }
   render() {
     return (
-      <form className = "App-StartGameButton">
-      <div className = "div-default">
-        <label htmlFor="userId" className = "my-label">User ID:</label> 
-        <input
-          name="userId"
-          id="userId"
-          className = "my-input"
-          type="text"
-          onChange={this.handleInputChange.bind(this)}
-          value={this.state.userId}
-        />
-        <label htmlFor="playerCount" className = "my-label">Players:</label>
-        <input
-          name="playerCount"
-          id="playerCount"
-          className = "my-input"
-          type="number"
-          step="1"
-          min="3"
-          max="6"
-          onChange={this.handleInputChange.bind(this)}
-          value={this.state.playerCount}
-        />
-        <button
-          onClick={this.handleClick.bind(this)}
-          disabled={
-            this.state.userID.length === 0 ||
-            this.state.playerCount < 3 ||
-            this.state.playerCount > 6
-          }
-        className ="btn btn-primary" id = "startNewGame">
-          Start New Game
-        </button>
+
+      <form className="App-StartGameButton">
+        <div className="div-default">
+          <label htmlFor="userID" className = "my-label">User ID:</label>
+          <input
+            name="userID"
+            id="userID"
+            className="my-input"
+            type="text"
+            onChange={this.handleInputChange.bind(this)}
+            value={this.state.userId}
+          />
+    
+          <label htmlFor="playerCount" className = "my-label">Players:</label>
+          <input
+            name="playerCount"
+            id="playerCount"
+            className="my-input"
+            type="number"
+            step="1"
+            min="3"
+            max="6"
+            onChange={this.handleInputChange.bind(this)}
+            value={this.state.playerCount}
+          />
+    
+          <button
+            onClick={this.handleClick.bind(this)}
+            disabled={
+              this.state.userID.length === 0 ||
+              this.state.playerCount < 3 ||
+              this.state.playerCount > 6
+            }
+            className="btn btn-primary" id = "startNewGame"
+          >
+            Start New Game
+          </button>
         </div>
+    
         <p>{this.state.error}</p>
       </form>
     )

@@ -92,19 +92,18 @@ exports.joinGame = functions.https.onRequest((req, res) =>
   })
 )
 
-exports.startGame = functions.https.onRequest((req, res) =>
-  cors(req, res, () => {
-    const { userID, gameID } = req.query
-    const db = admin.database()
+startGame = () => {
+  const { userID, gameID } = req.query
+  const db = admin.database()
 
-    const gameRef = db.ref(`games/${gameID}`)
+  const gameRef = db.ref(`games/${gameID}`)
 
-    gameRef.once('value').then(gameData => {
-      if (gameData.numberOfTurn == 0) {
-        gameRef.update({ numberOfTurn: 1 }).then(() => res.status(200))
-      } else {
-        res.status(500).send('Game has already started')
-      }
-    })
+  gameRef.once('value').then(gameData => {
+    if (gameData.numberOfTurn == 0) {
+      gameRef.update({ numberOfTurn: 1 })
+      return true
+    } else {
+      return false
+    }
   })
-)
+}

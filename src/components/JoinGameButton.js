@@ -30,27 +30,39 @@ export default class StartGameButton extends Component {
   render() {
     return (
       <form>
-        <div className = "div-default">
-        <label htmlFor="gameID">Game ID:&nbsp;&nbsp;&nbsp;</label>
-        <input
-          name="userID"
-          id="userID"
-          className = "my-input"
-          type="text"
-          onChange={this.handleInputChange.bind(this)}
-          value={this.state.userID}
-        />      
-        <button
-          onClick={this.handleClick.bind(this)}
-          disabled={
-            this.state.userID.length === 0 ||
-            this.state.playerCount < 3 ||
-            this.state.playerCount > 6
-          }
-        className ="btn btn-primary">
-          Join Game
-        </button>
-      </div>
+        <div className="div-default">
+          <label htmlFor="userID">User ID:</label>
+          <input
+            name="userID"
+            id="userID"
+            type="text"
+            className="my-input"
+            onChange={this.handleInputChange.bind(this)}
+            value={this.state.userID}
+          />
+
+          <label htmlFor="gameID">Game ID:</label>
+          <input
+            name="gameID"
+            id="gameID"
+            type="text"
+            className="my-input"
+            onChange={this.handleInputChange.bind(this)}
+            value={this.state.gameID}
+          />
+
+          <button
+            onClick={this.handleClick.bind(this)}
+            disabled={
+              this.state.userID.length === 0 ||
+              this.state.playerCount < 3 ||
+              this.state.playerCount > 6
+            }
+            className="btn btn-primary"
+          >
+            Join Game
+          </button>
+        </div>
       </form>
     )
   }
