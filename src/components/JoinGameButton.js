@@ -39,9 +39,7 @@ export default class StartGameButton extends Component {
           type="text"
           onChange={this.handleInputChange.bind(this)}
           value={this.state.userID}
-        />
-        <br/><br/>
-      
+        />      
         <button
           onClick={this.handleClick.bind(this)}
           disabled={
