@@ -18,7 +18,6 @@ export default class GameView extends Component {
   constructor(props) {
     super(props)
     this.state = {}
-    console.log(this)
   }
   componentWillMount() {
     database
@@ -28,6 +27,6 @@ export default class GameView extends Component {
       })
   }
   render() {
-    return <div>{JSON.stringify(this.state, 2, 0)}</div>
+    return <pre>{JSON.stringify(this.state, null, 2)}</pre>
   }
 }

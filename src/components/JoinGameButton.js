@@ -18,13 +18,21 @@ export default class StartGameButton extends Component {
       `http://localhost:5000/cs575-for-sale/us-central1/joinGame/?userID=${this
         .state.userID}&gameID=${this.state.gameID}`
     )
-      .then(response => response.text())
+      .then(
+        response =>
+          response.status === 200
+            ? Promise.resolve(response.text())
+            : Promise.reject(response.text())
+      )
       .then(gameID => {
         if (gameID) {
           window.location = '/game/' + gameID
         } else {
           this.setState({ error: 'Could not create new game' })
         }
+      })
+      .catch(errorPromise => {
+        errorPromise.then(error => this.setState({ error }))
       })
   }
   render() {
@@ -62,6 +70,7 @@ export default class StartGameButton extends Component {
           >
             Join Game
           </button>
+          <p>{this.state.error}</p>
         </div>
       </form>
     )

@@ -1,36 +1,28 @@
-[debug] [2017-11-22T16:53:32.778Z] ----------------------------------------------------------------------
-[debug] [2017-11-22T16:53:32.782Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only functions
-[debug] [2017-11-22T16:53:32.782Z] CLI Version:   3.13.1
-[debug] [2017-11-22T16:53:32.783Z] Platform:      darwin
-[debug] [2017-11-22T16:53:32.783Z] Node Version:  v8.5.0
-[debug] [2017-11-22T16:53:32.783Z] Time:          Wed Nov 22 2017 11:53:32 GMT-0500 (EST)
-[debug] [2017-11-22T16:53:32.783Z] ----------------------------------------------------------------------
+[debug] [2017-11-22T17:28:09.261Z] ----------------------------------------------------------------------
+[debug] [2017-11-22T17:28:09.264Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only functions
+[debug] [2017-11-22T17:28:09.264Z] CLI Version:   3.13.1
+[debug] [2017-11-22T17:28:09.264Z] Platform:      darwin
+[debug] [2017-11-22T17:28:09.264Z] Node Version:  v8.5.0
+[debug] [2017-11-22T17:28:09.265Z] Time:          Wed Nov 22 2017 12:28:09 GMT-0500 (EST)
+[debug] [2017-11-22T17:28:09.265Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2017-11-22T16:53:32.812Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2017-11-22T16:53:32.813Z] > authorizing via signed-in user
-[debug] [2017-11-22T16:53:32.815Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2017-11-22T16:53:32.816Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/W8E8E0oD5QGf7yivO4SkIL9C0aHAg_JpRqd-sZrFEPk',
-  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
-  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
-  grant_type: 'refresh_token',
-  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Wed Nov 22 2017 11:53:32 GMT-0500 (EST)
-[debug] [2017-11-22T16:53:32.963Z] <<< HTTP RESPONSE 200
-[debug] [2017-11-22T16:53:32.980Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cs575-for-sale  
- Wed Nov 22 2017 11:53:32 GMT-0500 (EST)
-[debug] [2017-11-22T16:53:33.273Z] <<< HTTP RESPONSE 200
-[debug] [2017-11-22T16:53:33.274Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/cs575-for-sale/tokens  
- Wed Nov 22 2017 11:53:33 GMT-0500 (EST)
-[debug] [2017-11-22T16:53:33.837Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-22T17:28:09.282Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-22T17:28:09.283Z] > authorizing via signed-in user
+[debug] [2017-11-22T17:28:09.285Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cs575-for-sale  
+ Wed Nov 22 2017 12:28:09 GMT-0500 (EST)
+[debug] [2017-11-22T17:28:09.592Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-22T17:28:09.593Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/cs575-for-sale/tokens  
+ Wed Nov 22 2017 12:28:09 GMT-0500 (EST)
+[debug] [2017-11-22T17:28:10.124Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/kristofermasson/Desktop/Drexel/cs575-for-sale'...
 [info] 
 [info] i  functions: Preparing to emulate functions.
-[debug] [2017-11-22T16:53:34.417Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/cs575-for-sale  
- Wed Nov 22 2017 11:53:34 GMT-0500 (EST)
-[debug] [2017-11-22T16:53:34.418Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/cs575-for-sale/apiKeys  
- Wed Nov 22 2017 11:53:34 GMT-0500 (EST)
-[debug] [2017-11-22T16:53:34.710Z] <<< HTTP RESPONSE 200
-[debug] [2017-11-22T16:53:34.968Z] <<< HTTP RESPONSE 200
-[info] ✔  functions: createNewGame: http://localhost:5000/cs575-for-sale/us-central1/createNewGame
+[debug] [2017-11-22T17:28:10.580Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/cs575-for-sale  
+ Wed Nov 22 2017 12:28:10 GMT-0500 (EST)
+[debug] [2017-11-22T17:28:10.581Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/cs575-for-sale/apiKeys  
+ Wed Nov 22 2017 12:28:10 GMT-0500 (EST)
+[debug] [2017-11-22T17:28:10.838Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-22T17:28:11.011Z] <<< HTTP RESPONSE 200
 [info] ✔  functions: joinGame: http://localhost:5000/cs575-for-sale/us-central1/joinGame
+[info] ✔  functions: createNewGame: http://localhost:5000/cs575-for-sale/us-central1/createNewGame

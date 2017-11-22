@@ -5,17 +5,20 @@ const cors = require('cors')({ origin: true })
 const admin = require('firebase-admin')
 admin.initializeApp(functions.config().firebase)
 
-const initalGameState = (numberOfPlayers, creatorUserId) => {
+const initalGameState = (numberOfPlayers, creatorUserID) => {
   return {
     phase1: Array(30).fill(0),
-    money:
-      numberOfPlayers <= 4
-        ? Array(numberOfPlayers).fill(18)
-        : Array(numberOfPlayers).fill(14),
     numberOfTurn: 0,
-    currentPlayerId: 0,
-    players: [creatorUserId],
-    playersThatHavePlayed: Array(numberOfPlayers).fill(false),
+    currentPlayerTurn: 1,
+    numberOfPlayers,
+    players: [
+      {
+        userID: creatorUserID,
+        playerNumber: 1,
+        money: numberOfPlayers <= 4 ? 18 : 14,
+        playerHasPlayed: false
+      }
+    ],
     phase2: [
       0,
       0,
@@ -79,20 +82,36 @@ exports.joinGame = functions.https.onRequest((req, res) =>
     const { userID, gameID } = req.query
 
     const gamePlayersRef = db.ref(`games/${gameID}/players`)
-
-    gamePlayersRef
-      .push({ userID })
-      .then(() => {
-        res.status(200).send(gameID)
-      })
-      .catch(err => {
-        console.error(err)
-        res.status(500).end()
-      })
+    const gameRef = db.ref(`games/${gameID}`)
+    gameRef.once('value').then(gameData => {
+      const game = gameData.val()
+      console.log(game)
+      const currentNumberOfPlayers = Object.keys(game.players).length
+      if (currentNumberOfPlayers == game.numberOfPlayers)
+        return res.status(300).send('Game is already full')
+      gamePlayersRef
+        .push({
+          userID: userID,
+          playerNumber: currentNumberOfPlayers + 1,
+          money: game.numberOfPlayers <= 4 ? 18 : 14,
+          playerHasPlayed: false
+        })
+        .catch(err => {
+          console.error(err)
+          res.status(500).end(error)
+        })
+        .then(() => {
+          res.status(200).send(gameID)
+        })
+        .catch(err => {
+          console.error(err)
+          res.status(500).end(error)
+        })
+    })
   })
 )
 
-startGame = () => {
+startGame = gameID => {
   const { userID, gameID } = req.query
   const db = admin.database()
 
