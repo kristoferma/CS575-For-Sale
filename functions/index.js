@@ -7,7 +7,7 @@ admin.initializeApp(functions.config().firebase)
 
 const initalGameState = (numberOfPlayers, creatorUserID) => {
   return {
-    phase1: Array(30).fill(0),
+    phase1: Array.from({ length: 30 }, (value, index) => index + 1),
     numberOfTurn: 0,
     currentPlayerTurn: 1,
     numberOfPlayers,
@@ -19,6 +19,7 @@ const initalGameState = (numberOfPlayers, creatorUserID) => {
         playerHasPlayed: false
       }
     ],
+    cardsInPlay: Array(numberOfPlayers).fill(0),
     phase2: [
       0,
       0,
@@ -70,7 +71,6 @@ exports.createNewGame = functions.https.onRequest((req, res) =>
         cors(req, res, () => res.status(200).send(newGameRef.key))
       })
       .catch(err => {
-        console.error(err)
         cors(req, res, () => res.status(500).send('Could not create new game'))
       })
   })
@@ -85,7 +85,6 @@ exports.joinGame = functions.https.onRequest((req, res) =>
     const gameRef = db.ref(`games/${gameID}`)
     gameRef.once('value').then(gameData => {
       const game = gameData.val()
-      console.log(game)
       const currentNumberOfPlayers = Object.keys(game.players).length
       if (currentNumberOfPlayers == game.numberOfPlayers)
         return res.status(300).send('Game is already full')
@@ -96,11 +95,9 @@ exports.joinGame = functions.https.onRequest((req, res) =>
           money: game.numberOfPlayers <= 4 ? 18 : 14,
           playerHasPlayed: false
         })
-        .catch(err => {
-          console.error(err)
-          res.status(500).end(error)
-        })
         .then(() => {
+          if (currentNumberOfPlayers + 1 === game.numberOfPlayers)
+            startGame(gameID)
           res.status(200).send(gameID)
         })
         .catch(err => {
@@ -112,17 +109,18 @@ exports.joinGame = functions.https.onRequest((req, res) =>
 )
 
 startGame = gameID => {
-  const { userID, gameID } = req.query
   const db = admin.database()
-
   const gameRef = db.ref(`games/${gameID}`)
 
   gameRef.once('value').then(gameData => {
-    if (gameData.numberOfTurn == 0) {
-      gameRef.update({ numberOfTurn: 1 })
-      return true
-    } else {
-      return false
-    }
+    const game = gameData.val()
+    if (game.numberOfTurn !== 0) return false
+    const phase1 = game.phase1
+    const randomCards = Array.from(
+      { length: game.numberOfPlayers },
+      () => phase1.splice(Math.floor(Math.random() * phase1.length), 1)[0]
+    )
+    gameRef.update({ numberOfTurn: 1, phase1, cardsInPlay: randomCards })
+    return true
   })
 }
