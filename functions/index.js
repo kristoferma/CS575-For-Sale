@@ -104,7 +104,7 @@ exports.joinGame = functions.https.onRequest((req, res) =>
         })
         .then(() => {
           if (currentNumberOfPlayers + 1 === game.numberOfPlayers) {
-            startGame(gameID).then(() => res.status(200).send(gameID))
+            startNewGame(gameID).then(() => res.status(200).send(gameID))
           } else res.status(200).send(gameID)
         })
         .catch(err => {
@@ -114,23 +114,6 @@ exports.joinGame = functions.https.onRequest((req, res) =>
     })
   })
 )
-
-startGame = gameID => {
-  const db = admin.database()
-  const gameRef = db.ref(`games/${gameID}`)
-
-  return gameRef.once('value').then(gameData => {
-    const game = gameData.val()
-    if (game.numberOfTurn != 0) return false
-    const phase1 = game.phase1
-    const randomCards = Array.from(
-      { length: game.numberOfPlayers },
-      () => phase1.splice(Math.floor(Math.random() * phase1.length), 1)[0]
-    )
-    gameRef.update({ numberOfTurn: 1, phase1, cardsInPlay: randomCards })
-    return true
-  })
-}
 
 startNewRound = gameID => {
   const db = admin.database()
@@ -168,6 +151,7 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
         return res.status(400).end()
       }
       const player = game.players[playerID]
+
       if (action == 'fold') {
         const moneySpent =
           game.cardsInPlay.length === 1
@@ -175,7 +159,8 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
             : Math.ceil(player.betAmount / 2)
 
         const newMoney = player.money - moneySpent
-        const cardGained = game.cardsInPlay
+        const cardsInPlay = game.cardsInPlay
+        const cardGained = cardsInPlay
           .sort()
           .reverse()
           .pop()
@@ -184,12 +169,10 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
           ? player.hand.push(cardGained)
           : [cardGained]
 
-        const cardsInPlay = game.cardsInPlay
-        const playerHasPlayed = true
-        const currentPlayerTurn =
-          game.currentPlayerTurn == game.numberOfPlayers - 1
-            ? 0
-            : game.currentPlayerTurn + 1
+        const currentPlayerTurn = nextPlayersTurn(
+          game.currentPlayerTurn,
+          game.numberOfPlayers
+        )
 
         gameRef
           .update({
@@ -198,7 +181,7 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
           })
           .then(() => {
             return gameRef.child('players/' + playerID).update({
-              playerHasPlayed,
+              playerHasPlayed: true,
               hand: newHand,
               money: newMoney
             })
@@ -225,3 +208,6 @@ const maxBet = players => {
   })
   return maxBet
 }
+
+const nextPlayersTurn = (currentPlayerTurn, numberOfPlayers) =>
+  currentPlayerTurn == numberOfPlayers - 1 ? 0 : currentPlayerTurn + 1
