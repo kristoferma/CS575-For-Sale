@@ -1,28 +1,29 @@
-[debug] [2017-11-22T19:12:43.873Z] ----------------------------------------------------------------------
-[debug] [2017-11-22T19:12:43.880Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only functions
-[debug] [2017-11-22T19:12:43.880Z] CLI Version:   3.13.1
-[debug] [2017-11-22T19:12:43.881Z] Platform:      darwin
-[debug] [2017-11-22T19:12:43.881Z] Node Version:  v8.5.0
-[debug] [2017-11-22T19:12:43.881Z] Time:          Wed Nov 22 2017 14:12:43 GMT-0500 (EST)
-[debug] [2017-11-22T19:12:43.881Z] ----------------------------------------------------------------------
+[debug] [2017-11-28T18:45:14.182Z] ----------------------------------------------------------------------
+[debug] [2017-11-28T18:45:14.185Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only functions
+[debug] [2017-11-28T18:45:14.185Z] CLI Version:   3.13.1
+[debug] [2017-11-28T18:45:14.185Z] Platform:      darwin
+[debug] [2017-11-28T18:45:14.185Z] Node Version:  v8.5.0
+[debug] [2017-11-28T18:45:14.186Z] Time:          Tue Nov 28 2017 13:45:14 GMT-0500 (EST)
+[debug] [2017-11-28T18:45:14.186Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2017-11-22T19:12:43.911Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2017-11-22T19:12:43.912Z] > authorizing via signed-in user
-[debug] [2017-11-22T19:12:43.915Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cs575-for-sale  
- Wed Nov 22 2017 14:12:43 GMT-0500 (EST)
-[debug] [2017-11-22T19:12:44.283Z] <<< HTTP RESPONSE 200
-[debug] [2017-11-22T19:12:44.284Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/cs575-for-sale/tokens  
- Wed Nov 22 2017 14:12:44 GMT-0500 (EST)
-[debug] [2017-11-22T19:12:44.668Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T18:45:14.204Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-28T18:45:14.205Z] > authorizing via signed-in user
+[debug] [2017-11-28T18:45:14.208Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cs575-for-sale  
+ Tue Nov 28 2017 13:45:14 GMT-0500 (EST)
+[debug] [2017-11-28T18:45:14.616Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T18:45:14.617Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/cs575-for-sale/tokens  
+ Tue Nov 28 2017 13:45:14 GMT-0500 (EST)
+[debug] [2017-11-28T18:45:15.085Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/kristofermasson/Desktop/Drexel/cs575-for-sale'...
 [info] 
 [info] i  functions: Preparing to emulate functions.
-[debug] [2017-11-22T19:12:45.219Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/cs575-for-sale  
- Wed Nov 22 2017 14:12:45 GMT-0500 (EST)
-[debug] [2017-11-22T19:12:45.220Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/cs575-for-sale/apiKeys  
- Wed Nov 22 2017 14:12:45 GMT-0500 (EST)
-[debug] [2017-11-22T19:12:45.478Z] <<< HTTP RESPONSE 200
-[debug] [2017-11-22T19:12:45.615Z] <<< HTTP RESPONSE 200
-[info] ✔  functions: createNewGame: http://localhost:5000/cs575-for-sale/us-central1/createNewGame
+[debug] [2017-11-28T18:45:15.597Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/cs575-for-sale  
+ Tue Nov 28 2017 13:45:15 GMT-0500 (EST)
+[debug] [2017-11-28T18:45:15.598Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/cs575-for-sale/apiKeys  
+ Tue Nov 28 2017 13:45:15 GMT-0500 (EST)
+[debug] [2017-11-28T18:45:15.908Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-28T18:45:15.927Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: phase1Play: http://localhost:5000/cs575-for-sale/us-central1/phase1Play
 [info] ✔  functions: joinGame: http://localhost:5000/cs575-for-sale/us-central1/joinGame
+[info] ✔  functions: createNewGame: http://localhost:5000/cs575-for-sale/us-central1/createNewGame

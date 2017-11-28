@@ -9,14 +9,16 @@ const initalGameState = (numberOfPlayers, creatorUserID) => {
   return {
     phase1: Array.from({ length: 30 }, (value, index) => index + 1),
     numberOfTurn: 0,
-    currentPlayerTurn: 1,
+    currentPlayerTurn: 0,
     numberOfPlayers,
     players: [
       {
         userID: creatorUserID,
         playerNumber: 1,
         money: numberOfPlayers <= 4 ? 18 : 14,
-        playerHasPlayed: false
+        betAmount: 0,
+        playerHasPlayed: false,
+        hand: []
       }
     ],
     cardsInPlay: Array(numberOfPlayers).fill(0),
@@ -88,17 +90,22 @@ exports.joinGame = functions.https.onRequest((req, res) =>
       const currentNumberOfPlayers = Object.keys(game.players).length
       if (currentNumberOfPlayers == game.numberOfPlayers)
         return res.status(300).send('Game is already full')
+
       gamePlayersRef
-        .push({
-          userID: userID,
-          playerNumber: currentNumberOfPlayers + 1,
-          money: game.numberOfPlayers <= 4 ? 18 : 14,
-          playerHasPlayed: false
+        .update({
+          [currentNumberOfPlayers]: {
+            userID: userID,
+            playerNumber: currentNumberOfPlayers + 1,
+            money: game.numberOfPlayers <= 4 ? 18 : 14,
+            betAmount: 0,
+            playerHasPlayed: false,
+            hand: []
+          }
         })
         .then(() => {
-          if (currentNumberOfPlayers + 1 === game.numberOfPlayers)
-            startGame(gameID)
-          res.status(200).send(gameID)
+          if (currentNumberOfPlayers + 1 === game.numberOfPlayers) {
+            startGame(gameID).then(() => res.status(200).send(gameID))
+          } else res.status(200).send(gameID)
         })
         .catch(err => {
           console.error(err)
@@ -112,9 +119,9 @@ startGame = gameID => {
   const db = admin.database()
   const gameRef = db.ref(`games/${gameID}`)
 
-  gameRef.once('value').then(gameData => {
+  return gameRef.once('value').then(gameData => {
     const game = gameData.val()
-    if (game.numberOfTurn !== 0) return false
+    if (game.numberOfTurn != 0) return false
     const phase1 = game.phase1
     const randomCards = Array.from(
       { length: game.numberOfPlayers },
@@ -123,4 +130,98 @@ startGame = gameID => {
     gameRef.update({ numberOfTurn: 1, phase1, cardsInPlay: randomCards })
     return true
   })
+}
+
+startNewRound = gameID => {
+  const db = admin.database()
+  const gameRef = db.ref(`games/${gameID}`)
+
+  return gameRef.once('value').then(gameData => {
+    const game = gameData.val()
+
+    if (!game.phase1) return false
+
+    const phase1 = game.phase1
+    const randomCards = Array.from(
+      { length: game.numberOfPlayers },
+      () => phase1.splice(Math.floor(Math.random() * phase1.length), 1)[0]
+    )
+    gameRef.update({
+      numberOfTurn: game.numberOfTurn + 1,
+      phase1,
+      cardsInPlay: randomCards
+    })
+    return true
+  })
+}
+
+exports.phase1Play = functions.https.onRequest((req, res) =>
+  cors(req, res, () => {
+    let { gameID, playerID, action } = req.query
+    const db = admin.database()
+    const gameRef = db.ref(`games/${gameID}`)
+
+    gameRef.once('value').then(gameData => {
+      const game = gameData.val()
+
+      if (playerID != game.currentPlayerTurn) {
+        return res.status(400).end()
+      }
+      const player = game.players[playerID]
+      if (action == 'fold') {
+        const moneySpent =
+          game.cardsInPlay.length === 1
+            ? player.betAmount
+            : Math.ceil(player.betAmount / 2)
+
+        const newMoney = player.money - moneySpent
+        const cardGained = game.cardsInPlay
+          .sort()
+          .reverse()
+          .pop()
+
+        const newHand = player.hand
+          ? player.hand.push(cardGained)
+          : [cardGained]
+
+        const cardsInPlay = game.cardsInPlay
+        const playerHasPlayed = true
+        const currentPlayerTurn =
+          game.currentPlayerTurn == game.numberOfPlayers - 1
+            ? 0
+            : game.currentPlayerTurn + 1
+
+        gameRef
+          .update({
+            cardsInPlay,
+            currentPlayerTurn
+          })
+          .then(() => {
+            return gameRef.child('players/' + playerID).update({
+              playerHasPlayed,
+              hand: newHand,
+              money: newMoney
+            })
+          })
+          .then(() => {
+            if (cardsInPlay.length == 0) startNewRound(gameID)
+          })
+      } else if (action == 'bet') {
+        const betAmount = maxBet(players) + 1
+        const currentPlayerTurn =
+          game.currentPlayerTurn == game.currentNumberOfPlayers
+            ? 1
+            : game.currentPlayerTurn + 1
+      } else return res.status(400).end()
+      res.status(200).end()
+    })
+  })
+)
+
+const maxBet = players => {
+  let maxBet = 0
+  players.forEach(player => {
+    maxBet = max(player.betAmount, maxBet)
+  })
+  return maxBet
 }
