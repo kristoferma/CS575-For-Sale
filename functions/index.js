@@ -70,13 +70,21 @@ exports.createNewGame = functions.https.onRequest((req, res) =>
     return newGameRef
       .set(newGameState)
       .then(() => {
-        cors(req, res, () => res.status(200).send(newGameRef.key))
+        res.status(200).send(newGameRef.key)
+        return newGameRef.key
       })
       .catch(err => {
-        cors(req, res, () => res.status(500).send('Could not create new game'))
+        res.status(500).send('Could not create new game')
       })
   })
 )
+
+exports.createNewRandomGame = functions.https.onRequest((req, res) => {
+  req.query = { userID: 'Kristófer', playerCount: 3 }
+  createNewGame(req, res).then(gameKey => {
+    joinGame(req, res)
+  })
+})
 
 exports.joinGame = functions.https.onRequest((req, res) =>
   cors(req, res, () => {
@@ -129,11 +137,16 @@ startNewRound = gameID => {
       { length: game.numberOfPlayers },
       () => phase1.splice(Math.floor(Math.random() * phase1.length), 1)[0]
     )
-    gameRef.update({
+    const updates = {
       numberOfTurn: game.numberOfTurn + 1,
       phase1,
       cardsInPlay: randomCards
+    }
+
+    newPlayerInfo = game.players.forEach((player, index) => {
+      updates[`players/${index}/playerHasPlayed`] = false
     })
+    gameRef.update(updates)
     return true
   })
 }
@@ -165,8 +178,8 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
           .reverse()
           .pop()
 
-        const newHand = player.hand
-          ? player.hand.push(cardGained)
+        let newHand = player.hand
+          ? player.hand.concat(cardGained)
           : [cardGained]
 
         const currentPlayerTurn = nextPlayersTurn(
