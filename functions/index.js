@@ -239,6 +239,8 @@ startNewRoundPhase2 = gameID => {
       { length: game.numberOfPlayers },
       () => phase2.splice(Math.floor(Math.random() * phase2.length), 1)[0]
     )
+
+    console.log(randomMoneyCards)
     const updates = {
       numberOfTurn: game.numberOfTurn + 1,
       phase2,
@@ -252,4 +254,61 @@ startNewRoundPhase2 = gameID => {
     return true
   })
 }
+
+exports.phase2Play = functions.https.onRequest((req, res) =>
+  cors(req, res, () => {
+    let { gameID, playerID, action } = req.query
+    const db = admin.database()
+    const gameRef = db.ref(`games/${gameID}`)
+
+    gameRef.once('value').then(gameData => {
+      const game = gameData.val()
+      const player = game.players[playerID]
+
+      if (player.playerHasPlayed === true) {
+        return res.status(400).end()
+      }
+
+      const cardsInPlay = game.cardsInPlay
+      card = Number(action)
+
+      let hand = player.hand
+      hand.splice(hand.indexOf(card),1)
+
+      gameRef.child('players/' + playerID).update({
+        playerHasPlayed: true,
+        hand,
+        selectedCard: card
+      })
+      .then(() => {
+            gameRef.once("value").then(gameData => {
+              const game = gameData.val()
+              if (game.players.every(player => player.playerHasPlayed)) {
+                cardInPlay = game.cardsInPlay.sort().reverse()
+                cardsSelected = game.players
+                                    .map((player, index) => ({card: player.selectedCard, player: index}))
+                                    .sort((obj1,obj2) => obj1.card < obj2.card)
+
+                 const updates = {}
+                cardsSelected.forEach((card) => {
+                  moneyGained = game.players[card.player].moneyGained 
+                                  ? game.players[card.player].moneyGained.concat(cardsInPlay.pop())
+                                  : [cardsInPlay.pop()]
+
+                  updates[`players/${card.player}/moneyGained`]= moneyGained
+                  updates[`players/${card.player}/selectedCard`]= null
+                  updates[`players/${card.player}/playerHasPlayed`]= false 
+                })
+                gameRef.update(updates)
+
+                startNewRoundPhase2(gameID)
+                
+              }
+            res.status(200).end()
+            })
+          })
+      
+    })
+  })
+)
 
