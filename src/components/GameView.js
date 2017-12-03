@@ -36,22 +36,17 @@ export default class GameView extends Component {
       })
   }
   render() {
-    return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
+    //return <pre>{JSON.stringify(this.state, null, 2)}</pre>
 
-    /*
-    var elements = [];
+    var elements = []
 
-    this.state.cardsInPlay.forEach((card)=>{
-      elements.push(
-        <PropertyCard property={card}/>
-      );
-    });
+    this.state.cardsInPlay.forEach(card => {
+      elements.push(<PropertyCard property={card} />)
+    })
 
     return (
       <div className="game_board">
-        <PlayerContainer
-          players={this.state.players}
-        />
+        <PlayerContainer players={this.state.players} />
         <div className="round_view">
           {elements}
           <div className="deck">
@@ -60,6 +55,5 @@ export default class GameView extends Component {
         </div>
       </div>
     )
-    */
   }
 }
