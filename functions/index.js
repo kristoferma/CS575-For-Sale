@@ -130,7 +130,7 @@ startNewRound = gameID => {
   return gameRef.once('value').then(gameData => {
     const game = gameData.val()
 
-    if (!game.phase1) return false
+    if (!game.phase1) return startNewRoundPhase2(gameID)
 
     const phase1 = game.phase1
     const randomCards = Array.from(
@@ -224,3 +224,32 @@ const maxBet = players => {
 
 const nextPlayersTurn = (currentPlayerTurn, numberOfPlayers) =>
   currentPlayerTurn == numberOfPlayers - 1 ? 0 : currentPlayerTurn + 1
+
+startNewRoundPhase2 = gameID => {
+  const db = admin.database()
+  const gameRef = db.ref(`games/${gameID}`)
+
+  return gameRef.once('value').then(gameData => {
+    const game = gameData.val()
+
+    if (!game.phase2) return false
+
+    const phase2 = game.phase2
+    const randomMoneyCards = Array.from(
+      { length: game.numberOfPlayers },
+      () => phase2.splice(Math.floor(Math.random() * phase2.length), 1)[0]
+    )
+    const updates = {
+      numberOfTurn: game.numberOfTurn + 1,
+      phase2,
+      cardsInPlay: randomMoneyCards
+    }
+
+    newPlayerInfo = game.players.forEach((player, index) => {
+      updates[`players/${index}/playerHasPlayed`] = false
+    })
+    gameRef.update(updates)
+    return true
+  })
+}
+
