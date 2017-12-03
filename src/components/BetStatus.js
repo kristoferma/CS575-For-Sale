@@ -23,7 +23,7 @@ function BidState(props) {
     return(
       <div class='bet_box'>
         <img class='pixel_img' src={pass_img}/>
-        <BetAmountDisplay betAmount='PASS'/>
+        <BetAmountDisplay betAmount='FOLD'/>
       </div>
     ); //TODO not sure if betAmountDisplay here is redundant...
   }

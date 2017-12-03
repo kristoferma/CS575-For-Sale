@@ -10,8 +10,11 @@
 }
 
 .card_base img {
-  height: 128px;
-  line-height: 128px;
+  height: 220px;
+  width: 150px;
+  border-radius: 10px;
+  border-color: #76a90b;
+  border-style: solid;
 }
 
 

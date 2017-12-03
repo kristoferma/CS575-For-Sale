@@ -1,19 +1,18 @@
 .bet_box{
-
   float: left;
-
+  margin-top: 20px;
 }
 
 .bet_box img {
-  height: 128px;
-  line-height: 128px;
+  height: 100px;
+  line-height: 100px;
 }
 
 .bet_box_info{
-  padding: 0em;
-  margin: 0em;
+  padding: 0px;
+  margin: 0px;
 }
 
 .bet_box_info p {
-  font-size: 2em;
+  font-size: 1.2em;
 }

@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react'
 
-import snek from '../img/no_step_snek_1.png'
+import property from '../img/20.jpg'
 
 import '../css/Card.css'
 import '../css/Common.css'
@@ -17,11 +17,11 @@ export default class PropertyCard extends Component {
       ID: 0
     }
   }
-
   render(){
       return (
         <div class='no_margin_padding pixel_img card_base property_1'>
-            <img src={snek}/>
-        </div>);
+            <img src={property}/>
+        </div>
+        );
       }
     }

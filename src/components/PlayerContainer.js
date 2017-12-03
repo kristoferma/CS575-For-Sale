@@ -5,8 +5,6 @@ import React, {
 import Player from './Player'
 import BetStatus from './BetStatus'
 
-import '../css/PlayerContainer.css'
-
 export default class PlayerContainer extends Component {
 
 
@@ -23,7 +21,7 @@ export default class PlayerContainer extends Component {
     {
 
         elements.push(
-          <div>
+          <div className = "playerInformation">
             <Player userID={this.props.players[i].userID} money={this.props.players[i].money}/>
             <BetStatus betAmount={this.props.players[i].betAmount} playerHasPlayed={this.props.players[i].playerHasPlayed}/>
           </div>
@@ -31,7 +29,7 @@ export default class PlayerContainer extends Component {
 
     }
       return (
-        <div class="flex-container">
+        <div className ="flex-container">
          {elements}
         </div>
         );

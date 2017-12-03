@@ -33,22 +33,25 @@ export default class GameView extends Component {
   }
   render() {
 
-    return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
+    //return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
 
     // Below code is for testing phase 1 layout
 
     // TODO implement displaying phase based on phase state in database
-/*
+
     return (
-      <div class='game_board'>
+      <div className='game_board'>
         <PlayerContainer numberOfPlayers={this.state.numberOfPlayers} players={this.state.players}/>
-        <div style={{position:'absolute', top:'15em', left:'40em', display: 'flex',flexDirection: 'row'}}>
+        <div className='round_view'>
           <PropertyCard />
           <PropertyCard />
           <PropertyCard />
+          <div className = 'deck'>
+          <div className ="innerDeck">
+          </div>
+          </div>
         </div>
       </div>
     );
-*/
   }
 }

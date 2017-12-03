@@ -1,3 +1,39 @@
 .game_board {
-  background: rgb(78, 166, 180);
+  background: white;
+  display: flex;
+  align-items: center;
+
+}
+.round_view{
+  width: 100%;
+  display: flex;
+  flexDirection: row;
+  justify-content: center;
+}
+
+.deck{
+  width: 150px;
+  height: 220px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color:#76a90b;
+  background: white;
+}
+
+.innerDeck{
+	width: 130px;
+	height: 200px;
+	margin: 7px;
+	border-radius: 10px;
+	background: #76a90b;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.playerInformation{
+	width: 100%;
+	display: flex;
 }
