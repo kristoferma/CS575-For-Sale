@@ -22,7 +22,11 @@ const database = firebase.database()
 export default class GameView extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      numberOfPlayers: 0,
+      players: [],
+      cardsInPlay: []
+    }
   }
   componentWillMount() {
     database
@@ -32,27 +36,30 @@ export default class GameView extends Component {
       })
   }
   render() {
-    //return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
+    return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
 
-    // Below code is for testing phase 1 layout
+    /*
+    var elements = [];
 
-    // TODO implement displaying phase based on phase state in database
+    this.state.cardsInPlay.forEach((card)=>{
+      elements.push(
+        <PropertyCard property={card}/>
+      );
+    });
 
     return (
       <div className="game_board">
         <PlayerContainer
-          numberOfPlayers={this.state.numberOfPlayers}
           players={this.state.players}
         />
         <div className="round_view">
-          <PropertyCard />
-          <PropertyCard />
-          <PropertyCard />
+          {elements}
           <div className="deck">
             <div className="innerDeck" />
           </div>
         </div>
       </div>
     )
+    */
   }
 }
