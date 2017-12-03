@@ -36,14 +36,13 @@ export default class GameView extends Component {
       })
   }
   render() {
-    return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
+    //return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
 
-    /*
     var elements = [];
 
     this.state.cardsInPlay.forEach((card)=>{
       elements.push(
-        <PropertyCard property={card}/>
+      this.state.phase1 ? <PropertyCard property={card}/> : <MoneyCard money = {Card}/>
       );
     });
 
@@ -60,6 +59,6 @@ export default class GameView extends Component {
         </div>
       </div>
     )
-    */
+  
   }
 }
