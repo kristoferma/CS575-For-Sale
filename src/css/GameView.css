@@ -2,30 +2,31 @@
   background: white;
   display: flex;
   align-items: center;
-
+  justify-content: center;
+  flex-grow: 1;
 }
-.round_view{
+.round_view {
   width: 100%;
   display: flex;
-  flexDirection: row;
+  flex-direction: row;
   justify-content: center;
 }
 
-.deck{
+.deck {
   width: 150px;
   height: 220px;
   border-radius: 10px;
   border-style: solid;
-  border-color:#76a90b;
+  border-color: #76a90b;
   background: white;
 }
 
-.innerDeck{
-	width: 130px;
-	height: 200px;
-	margin: 7px;
-	border-radius: 10px;
-	background: #76a90b;
+.innerDeck {
+  width: 130px;
+  height: 200px;
+  margin: 7px;
+  border-radius: 10px;
+  background: #76a90b;
 }
 
 .flex-container {
@@ -33,7 +34,7 @@
   flex-direction: column;
 }
 
-.playerInformation{
-	width: 100%;
-	display: flex;
+.playerInformation {
+  width: 100%;
+  display: flex;
 }

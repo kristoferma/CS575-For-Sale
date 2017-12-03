@@ -11,8 +11,9 @@ export default class StartGameButton extends Component {
   handleClick(event) {
     event.preventDefault()
     fetch(
-      `http://localhost:5000/cs575-for-sale/us-central1/createNewGame/?userID=${this
-        .state.userID}&playerCount=${this.state.playerCount}`
+      `http://localhost:5000/cs575-for-sale/us-central1/createNewGame/?userID=${
+        this.state.userID
+      }&playerCount=${this.state.playerCount}`
     )
       .then(response => response.text())
       .then(gameID => {
@@ -25,10 +26,11 @@ export default class StartGameButton extends Component {
   }
   render() {
     return (
-
       <form className="App-StartGameButton">
         <div className="div-default">
-          <label htmlFor="userID" className = "my-label">User ID:</label>
+          <label htmlFor="userID" className="my-label">
+            User ID:
+          </label>
           <input
             name="userID"
             id="userID"
@@ -37,8 +39,10 @@ export default class StartGameButton extends Component {
             onChange={this.handleInputChange.bind(this)}
             value={this.state.userId}
           />
-    
-          <label htmlFor="playerCount" className = "my-label">Players:</label>
+
+          <label htmlFor="playerCount" className="my-label">
+            Players:
+          </label>
           <input
             name="playerCount"
             id="playerCount"
@@ -50,7 +54,7 @@ export default class StartGameButton extends Component {
             onChange={this.handleInputChange.bind(this)}
             value={this.state.playerCount}
           />
-    
+
           <button
             onClick={this.handleClick.bind(this)}
             disabled={
@@ -58,12 +62,13 @@ export default class StartGameButton extends Component {
               this.state.playerCount < 3 ||
               this.state.playerCount > 6
             }
-            className="btn btn-primary" id = "startNewGame"
+            className="btn btn-primary"
+            id="startNewGame"
           >
             Start New Game
           </button>
         </div>
-    
+
         <p>{this.state.error}</p>
       </form>
     )

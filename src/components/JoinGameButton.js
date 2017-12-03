@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 export default class StartGameButton extends Component {
   constructor(props) {
@@ -15,8 +14,9 @@ export default class StartGameButton extends Component {
   handleClick(event) {
     event.preventDefault()
     fetch(
-      `http://localhost:5000/cs575-for-sale/us-central1/joinGame/?userID=${this
-        .state.userID}&gameID=${this.state.gameID}`
+      `http://localhost:5000/cs575-for-sale/us-central1/joinGame/?userID=${
+        this.state.userID
+      }&gameID=${this.state.gameID}`
     )
       .then(
         response =>
