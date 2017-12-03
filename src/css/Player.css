@@ -1,0 +1,67 @@
+.player_card {
+  width: 15em;
+  height: auto;
+  background-color: white;
+  box-shadow: 3px 5px 5px grey;
+  border-color: #597003;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  padding: 1em;
+  float:left;
+
+}
+
+.player_name_header{
+  text-align: left;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: auto;
+  overflow: hidden;
+  border: none;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  background: white;
+  color: #597003;
+  font: 16em;
+  margin-bottom: 0em;
+}
+
+.coin {
+
+  float: left;
+
+  margin-bottom: 2px;
+  margin-left: 10px;
+  margin-top: 10px;
+
+  width: 4em;
+  height: 4em;
+
+
+}
+
+.coin_box {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  width:100%;
+  float: left;
+  background-color: #F5F7B8;
+}
+
+.coin_font {
+  font-size: 3em;
+  float: right;
+  position: relative;
+  top: .1em;
+  color: #597003;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}

@@ -1,0 +1,35 @@
+.card_base {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  width: 150px;
+  height: 220px;
+  border-radius: 10px;
+  background: #F5F5DC;
+  box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+}
+
+.card_base img {
+  height: 128px;
+  line-height: 128px;
+}
+
+
+.property_1:before, .property_1:after {
+  content: "1";
+  color: black;
+}
+
+div[class*='property']:before {
+  position: absolute;
+  font-size: 35px;
+  left: 5px;
+  top: 5px;
+}
+
+div[class*='property']:after {
+  position: absolute;
+  font-size: 35px;
+  right: 5px;
+  bottom: 5px;
+}

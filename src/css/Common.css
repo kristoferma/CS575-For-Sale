@@ -1,0 +1,14 @@
+.no_margin_padding {
+  padding: 0em;
+  margin: 0em;
+}
+
+.pixel_img {
+  /* needed to make pixels art clearer*/
+
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: pixelated;
+}

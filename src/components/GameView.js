@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 
 import firebase from 'firebase'
 
+import PlayerContainer from './PlayerContainer'
+import PropertyCard from './PropertyCard'
+
+import '../css/GameView.css'
+
 var config = {
   apiKey: 'AIzaSyDjC1dJFrFpBTiXlCGbMR4YY48RtfOTZV8',
   authDomain: 'cs575-for-sale.firebaseapp.com',
@@ -27,6 +32,23 @@ export default class GameView extends Component {
       })
   }
   render() {
-    return <pre>{JSON.stringify(this.state, null, 2)}</pre>
+
+    return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
+
+    // Below code is for testing phase 1 layout
+
+    // TODO implement displaying phase based on phase state in database
+/*
+    return (
+      <div class='game_board'>
+        <PlayerContainer numberOfPlayers={this.state.numberOfPlayers} players={this.state.players}/>
+        <div style={{position:'absolute', top:'15em', left:'40em', display: 'flex',flexDirection: 'row'}}>
+          <PropertyCard />
+          <PropertyCard />
+          <PropertyCard />
+        </div>
+      </div>
+    );
+*/
   }
 }
