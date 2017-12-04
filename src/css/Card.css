@@ -5,8 +5,25 @@
   width: 150px;
   height: 220px;
   border-radius: 10px;
-  background: #F5F5DC;
-  box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+  background: #f5f5dc;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+.players_card {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.players_card > div:first-child {
+  /* -or- li:only-child { */
+  margin-left: 1%;
+}
+
+.players_card > div {
+  /* -or- li:only-child { */
+  margin-left: -100%;
 }
 
 .card_base img {
@@ -17,198 +34,222 @@
   border-style: solid;
 }
 
-.card_money{
+.card_money {
   height: 220px;
   width: 150px;
-  background: #D9CB2C;
+  background: #d9cb2c;
   border-radius: 10px;
-  border-color: #9C892B;
+  border-color: #9c892b;
   border-style: solid;
 }
 
-.money_decoration{
+.money_decoration {
   display: flex;
   flex-direction: column;
 }
 
-.dollar_sign{
+.dollar_sign {
   font-size: 12em;
   color: grey;
   margin-top: -100px;
   text-align: center;
 }
 
-.sign_one{
+.sign_one {
   margin-left: 5px;
   font-size: 2em;
 }
 
-.sign_two{
+.sign_two {
   text-align: right;
   margin-right: 5px;
   font-size: 2em;
   margin-top: -100px;
 }
 
-
-
-
-
-
-
-
-.property_1:before, .property_1:after {
-  content: "1";
+.property_1:before,
+.property_1:after {
+  content: '1';
   color: black;
 }
 
-.property_2:before, .property_2:after {
-  content: "2";
+.property_2:before,
+.property_2:after {
+  content: '2';
   color: black;
 }
 
-.property_3:before, .property_3:after {
-  content: "3";
+.property_3:before,
+.property_3:after {
+  content: '3';
   color: black;
 }
 
-.property_4:before, .property_4:after {
-  content: "4";
+.property_4:before,
+.property_4:after {
+  content: '4';
   color: black;
 }
 
-.property_5:before, .property_5:after {
-  content: "5";
+.property_5:before,
+.property_5:after {
+  content: '5';
   color: black;
 }
 
-.property_6:before, .property_6:after {
-  content: "6";
+.property_6:before,
+.property_6:after {
+  content: '6';
   color: black;
 }
 
-.property_7:before, .property_7:after {
-  content: "7";
+.property_7:before,
+.property_7:after {
+  content: '7';
   color: black;
 }
 
-.property_8:before, .property_8:after {
-  content: "8";
+.property_8:before,
+.property_8:after {
+  content: '8';
   color: black;
 }
 
-.property_9:before, .property_9:after {
-  content: "9";
+.property_9:before,
+.property_9:after {
+  content: '9';
   color: black;
 }
 
-.property_10:before, .property_10:after {
-  content: "10";
+.property_10:before,
+.property_10:after {
+  content: '10';
   color: black;
 }
 
-.property_11:before, .property_11:after {
-  content: "11";
+.property_11:before,
+.property_11:after {
+  content: '11';
   color: black;
 }
 
-.property_12:before, .property_12:after {
-  content: "12";
+.property_12:before,
+.property_12:after {
+  content: '12';
   color: black;
 }
 
-.property_13:before, .property_13:after {
-  content: "13";
+.property_13:before,
+.property_13:after {
+  content: '13';
   color: black;
 }
 
-.property_14:before, .property_14:after {
-  content: "14";
+.property_14:before,
+.property_14:after {
+  content: '14';
   color: black;
 }
 
-.property_15:before, .property_15:after {
-  content: "15";
+.property_15:before,
+.property_15:after {
+  content: '15';
   color: black;
 }
 
-.property_16:before, .property_16:after {
-  content: "16";
+.property_16:before,
+.property_16:after {
+  content: '16';
   color: black;
 }
 
-.property_17:before, .property_17:after {
-  content: "17";
+.property_17:before,
+.property_17:after {
+  content: '17';
   color: black;
 }
 
-.property_18:before, .property_18:after {
-  content: "18";
+.property_18:before,
+.property_18:after {
+  content: '18';
   color: black;
 }
 
-.property_19:before, .property_19:after {
-  content: "19";
+.property_19:before,
+.property_19:after {
+  content: '19';
   color: black;
 }
 
-.property_20:before, .property_20:after {
-  content: "20";
+.property_20:before,
+.property_20:after {
+  content: '20';
   color: black;
 }
 
-.property_21:before, .property_21:after {
-  content: "21";
+.property_21:before,
+.property_21:after {
+  content: '21';
   color: black;
 }
 
-.property_22:before, .property_22:after {
-  content: "22";
+.property_22:before,
+.property_22:after {
+  content: '22';
   color: black;
 }
 
-.property_23:before, .property_23:after {
-  content: "23";
+.property_23:before,
+.property_23:after {
+  content: '23';
   color: black;
 }
 
-.property_24:before, .property_24:after {
-  content: "24";
+.property_24:before,
+.property_24:after {
+  content: '24';
   color: black;
 }
 
-.property_25:before, .property_25:after {
-  content: "25";
+.property_25:before,
+.property_25:after {
+  content: '25';
   color: black;
 }
 
-.property_26:before, .property_26:after {
-  content: "26";
+.property_26:before,
+.property_26:after {
+  content: '26';
   color: black;
 }
 
-.property_27:before, .property_27:after {
-  content: "27";
+.property_27:before,
+.property_27:after {
+  content: '27';
   color: black;
 }
 
-.property_28:before, .property_28:after {
-  content: "28";
+.property_28:before,
+.property_28:after {
+  content: '28';
   color: black;
 }
 
-.property_29:before, .property_29:after {
-  content: "29";
+.property_29:before,
+.property_29:after {
+  content: '29';
   color: black;
 }
 
-.property_30:before, .property_30:after {
-  content: "30";
+.property_30:before,
+.property_30:after {
+  content: '30';
   color: black;
 }
 
-.property_err:before, .property_err:after {
-  content: "err";
+.property_err:before,
+.property_err:after {
+  content: 'err';
   color: black;
 }
 
