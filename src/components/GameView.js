@@ -30,6 +30,7 @@ export default class GameView extends Component {
       cardsInPlay: []
     }
   }
+
   componentWillMount() {
     database
       .ref('games/' + this.props.match.params.gameID)
@@ -45,9 +46,13 @@ export default class GameView extends Component {
     var elements = [];
     var playerCards = [];
 
-    this.player.players[0].hand.forEach((card) =>{
-      playerCards.push(<PropertyCard property={card}/>);
-    });
+    this.state.players.forEach((player)=>{
+      player.hand.forEach((card) =>{
+          playerCards.push(<PropertyCard property={card}/>);
+        })
+    }
+
+  );
 
 
     this.state.cardsInPlay.forEach((card)=>{
