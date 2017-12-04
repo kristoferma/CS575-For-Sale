@@ -9,15 +9,16 @@ export default class PropertyCard extends Component {
   }
 
   render() {
-    if (typeof this.props.property !== 'number' || this.props.property < 1) this.props.property = 'err'
+    let property = this.props.property
+    if (typeof property !== 'number' || property < 1) property = 'err'
     return (
       <div class={`no_margin_padding pixel_img card_base`}>
         <img
-          src={`${process.env.PUBLIC_URL}/img/${this.props.property}.png`}
-          alt={"property card"+this.props.property}
+          src={`${process.env.PUBLIC_URL}/img/${property}.png`}
+          alt={'property card' + property}
         />
-        <p className = "top_left">{this.props.property}</p>
-        <p className = "bottom_right">{this.props.property}</p>
+        <p className="top_left">{property}</p>
+        <p className="bottom_right">{property}</p>
       </div>
     )
   }
