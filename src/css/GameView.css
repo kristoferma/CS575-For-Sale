@@ -1,8 +1,12 @@
 .game_board {
   background: white;
   display: flex;
+  flex-direction: column;
+
   align-items: center;
   justify-content: center;
+  justify-content: space-around;
+
   flex-grow: 1;
 }
 .round_view {
@@ -31,10 +35,23 @@
 
 .flex-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .playerInformation {
   width: 100%;
   display: flex;
+}
+
+.bet_fold_buttons{
+  display: flex;
+  flex-direction: column;
+}
+
+#bet_button{
+  margin: 20px 0px -5px 0px;
+}
+
+#fold_button{
+    margin: 10px 0px -5px 0px;
 }

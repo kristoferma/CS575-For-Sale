@@ -38,18 +38,21 @@ export default class PlayerContainer extends Component {
               playerHasPlayed={player.playerHasPlayed}
             />
             <div
-              className="flex-container"
-              style={{ justifyContent: 'center' }}
+              className="bet_fold_buttons"
             >
               <input
                 type="button"
                 onClick={this.handleBetClick(player.playerNumber).bind(this)}
                 value="Bet"
+                id = "bet_button"
+                className="btn btn-success"
               />
               <input
                 type="button"
                 onClick={this.handleFoldClick(player.playerNumber).bind(this)}
                 value="Fold"
+                className="btn btn-danger"
+                id = "fold_button"
               />
             </div>
           </div>
