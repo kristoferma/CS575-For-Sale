@@ -73,20 +73,30 @@
 
 .winner_screen{
   display: flex;
-  flex-direction: column;
-  background-image: url = ("public/img/winner.jpeg")
-          
+  flex-direction: column; 
 }
 
+#firework{
+  width: 20%;
+  height: 20%;
+}
+
+.winner_information{
+  display: flex;
+  flex-direction: column;
+}
 
 .winner{
-  margin-left: 10%;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  margin-top: 5%;
 }
 
 #winner_title{
   font-size: 4em;
-  color:#D88C03;
+  color: #EAD32F;
 }
 .remaining_players{
   display: flex;
@@ -95,29 +105,30 @@
 }
 
 #winner_name{
-  font-size: 3em;
-  color:#5A7004;
+  font-size: 2.5em;
+  color:#dc3545;
 }
 
 #winner_score{
   font-size: 3em;
   font-style:italic;
-  color:#5A7004;
+  color:#dc3545;
 }
 
-
-
 .each_player{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   width: 150px;
-  height: 120px;
+  height: 50px;
   margin: 50px 100px 100px;
   border-radius: 5px;
-  background-color: #F5F7B8;
+  background-color: #FDEDEC;
   text-align: center;
-  padding: 20px;
-  border-color: #597003;
+  padding: 5px;
+  border-color: #EAD32F;
   border-style: solid;
-  color:#597003;
+  color:#050AA7;
   font-weight: bold;
   font-size: 1.5em;
 }

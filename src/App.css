@@ -11,9 +11,8 @@ body,
 }
 
 .App-header {
-  background-image: url('headerImage.jpg');
-  height: 100px;
-  padding: 30px;
+  background: #dc3545;
+  height: 50px;
   color: white;
   text-align: center;
   font-family: Impact, Charcoal, sans-serif;
