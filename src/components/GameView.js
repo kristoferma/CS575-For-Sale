@@ -6,7 +6,6 @@ import PlayerContainer from './PlayerContainer'
 import PropertyCard from './PropertyCard'
 import MoneyCard from './MoneyCard'
 
-
 import '../css/GameView.css'
 
 var config = {
@@ -40,25 +39,20 @@ export default class GameView extends Component {
   }
 
   render() {
-
     //return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
 
-    var elements = [];
-    var playerCards = [];
+    var elements = []
+    var playerCards = []
 
-    if(this.state.players[0])
-    {
-      this.state.players[0].hand.forEach((card) =>{
-            playerCards.push(<PropertyCard property={card}/>);
-          });
-    }
-
-
-    this.state.cardsInPlay.forEach((card)=>{
+    this.state.cardsInPlay.forEach(card => {
       elements.push(
-      this.state.phase1 ? <PropertyCard property={card}/> : <MoneyCard money = {card}/>
-      );
-    });
+        this.state.phase1 ? (
+          <PropertyCard property={card} />
+        ) : (
+          <MoneyCard money={card} />
+        )
+      )
+    })
 
     return (
       <div className="game_board">
@@ -68,10 +62,14 @@ export default class GameView extends Component {
           <div className="deck">
             <div className="innerDeck" />
           </div>
-      </div>
-      <div className="players_card">
-      {playerCards}
-      </div>
+        </div>
+        <div className="players_card">
+          {this.state.players.length !== 0
+            ? this.state.players[0].hand.map(card => (
+                <PropertyCard property={card} />
+              ))
+            : null}
+        </div>
       </div>
     )
   }
