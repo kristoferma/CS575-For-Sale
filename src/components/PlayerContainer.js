@@ -37,15 +37,13 @@ export default class PlayerContainer extends Component {
               betAmount={player.betAmount}
               playerHasPlayed={player.playerHasPlayed}
             />
-            {(this.props.phase1.length !=0)
-             ? <div
-                className="bet_fold_buttons"
-              >
+            {this.props.phase2.length === 30 ? (
+              <div className="bet_fold_buttons">
                 <input
                   type="button"
                   onClick={this.handleBetClick(player.playerNumber).bind(this)}
                   value="Bet"
-                  id = "bet_button"
+                  id="bet_button"
                   className="btn btn-success"
                 />
                 <input
@@ -53,10 +51,10 @@ export default class PlayerContainer extends Component {
                   onClick={this.handleFoldClick(player.playerNumber).bind(this)}
                   value="Fold"
                   className="btn btn-danger"
-                  id = "fold_button"
+                  id="fold_button"
                 />
               </div>
-              : null}
+            ) : null}
           </div>
         ))}
       </div>

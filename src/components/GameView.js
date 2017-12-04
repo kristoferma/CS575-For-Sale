@@ -74,7 +74,7 @@ export default class GameView extends Component {
           {this.state.cardsInPlay.length !== 0
             ? this.state.cardsInPlay.map(
                 card =>
-                  this.state.phase1.length !== 0 ? (
+                  this.state.phase2.length === 30 ? (
                     <PropertyCard property={card} />
                   ) : (
                     <MoneyCard money={card} />
@@ -86,7 +86,6 @@ export default class GameView extends Component {
           </div>
         </div>
         <div className="players_card">
-          {console.log(this.state.players[PLAYER])}
           {this.state.players.length !== 0 && this.state.players[PLAYER].hand
             ? this.state.players[PLAYER].hand.map(card => (
                 <PropertyCard

@@ -79,13 +79,6 @@ exports.createNewGame = functions.https.onRequest((req, res) =>
   })
 )
 
-exports.createNewRandomGame = functions.https.onRequest((req, res) => {
-  req.query = { userID: 'Kristófer', playerCount: 3 }
-  createNewGame(req, res).then(gameKey => {
-    joinGame(req, res)
-  })
-})
-
 exports.joinGame = functions.https.onRequest((req, res) =>
   cors(req, res, () => {
     const db = admin.database()
@@ -159,7 +152,7 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
     gameRef.once('value').then(gameData => {
       const game = gameData.val()
 
-      if (playerID != game.currentPlayerTurn || !game.phase1) {
+      if (playerID != game.currentPlayerTurn || game.phase2.length !== 30) {
         return res.status(400).end()
       }
       const player = game.players[playerID]
