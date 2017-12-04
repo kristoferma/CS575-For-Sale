@@ -12,7 +12,10 @@ export default class PropertyCard extends Component {
     let property = this.props.property
     if (typeof property !== 'number' || property < 1) property = 'err'
     return (
-      <div class={`no_margin_padding pixel_img card_base`}>
+      <div
+        class={`no_margin_padding pixel_img card_base`}
+        onClick={this.props.clickHandler}
+      >
         <img
           src={`${process.env.PUBLIC_URL}/img/${property}.png`}
           alt={'property card' + property}

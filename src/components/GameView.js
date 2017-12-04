@@ -7,8 +7,9 @@ import PropertyCard from './PropertyCard'
 import MoneyCard from './MoneyCard'
 import WinningView from './WinningView'
 
-
 import '../css/GameView.css'
+
+const PLAYER = 0
 
 var config = {
   apiKey: 'AIzaSyDjC1dJFrFpBTiXlCGbMR4YY48RtfOTZV8',
@@ -44,6 +45,15 @@ export default class GameView extends Component {
       })
   }
 
+  phase2ClickHandler(card) {
+    return () =>
+      fetch(
+        `http://localhost:5000/cs575-for-sale/us-central1/phase2Play?gameID=${
+          this.props.match.params.gameID
+        }&playerID=${PLAYER}&action=${card}`
+      )
+  }
+
   render() {
     //return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
 
@@ -71,15 +81,17 @@ export default class GameView extends Component {
         <div className="players_card">
           {this.state.players.length !== 0 && this.state.players[0].hand
             ? this.state.players[0].hand.map(card => (
-                <PropertyCard property={card} />
+                <PropertyCard
+                  property={card}
+                  clickHandler={this.phase2ClickHandler(card)}
+                />
               ))
             : null}
         </div>
-          <div>
-            <WinningView players = {this.state.players} /> 
-          </div>
+        <div>
+          <WinningView players={this.state.players} />
+        </div>
       </div>
     )
   }
 }
-
