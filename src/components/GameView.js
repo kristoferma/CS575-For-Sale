@@ -21,6 +21,29 @@ var config = {
 firebase.initializeApp(config)
 const database = firebase.database()
 
+function Phase1(props) {
+  return (
+    <div className="game_board">
+      <PlayerContainer gameID={props.gameID} players={props.players} />
+      <div className="round_view">
+        {props.elements}
+        <div className="deck">
+          <div className="innerDeck" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Phase2(props) {
+  //TODO implement phase2 money cards
+  return (
+    <div className="game_board">
+      <PlayerContainer players={props.players} />
+    </div>
+  )
+}
+
 export default class GameView extends Component {
   constructor(props) {
     super(props)
@@ -38,16 +61,18 @@ export default class GameView extends Component {
       })
   }
   render() {
+
     //return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
 
     var elements = [];
+
 
     this.state.cardsInPlay.forEach((card)=>{
       elements.push(
       this.state.phase1 ? <PropertyCard property={card}/> : <MoneyCard money = {card}/>
       );
     });
-
+    
     return (
       <div className="game_board">
         <PlayerContainer players={this.state.players} />
@@ -59,6 +84,5 @@ export default class GameView extends Component {
         </div>
       </div>
     )
-
   }
 }

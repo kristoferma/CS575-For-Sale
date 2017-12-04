@@ -112,7 +112,7 @@ exports.joinGame = functions.https.onRequest((req, res) =>
         })
         .then(() => {
           if (currentNumberOfPlayers + 1 === game.numberOfPlayers) {
-            startNewGame(gameID).then(() => res.status(200).send(gameID))
+            startNewRound(gameID).then(() => res.status(200).send(gameID))
           } else res.status(200).send(gameID)
         })
         .catch(err => {
@@ -190,7 +190,8 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
         gameRef
           .update({
             cardsInPlay,
-            currentPlayerTurn
+            currentPlayerTurn,
+            selectedCard: 8
           })
           .then(() => {
             return gameRef.child('players/' + playerID).update({
@@ -240,7 +241,6 @@ startNewRoundPhase2 = gameID => {
       () => phase2.splice(Math.floor(Math.random() * phase2.length), 1)[0]
     )
 
-    console.log(randomMoneyCards)
     const updates = {
       numberOfTurn: game.numberOfTurn + 1,
       phase2,
@@ -273,42 +273,46 @@ exports.phase2Play = functions.https.onRequest((req, res) =>
       card = Number(action)
 
       let hand = player.hand
-      hand.splice(hand.indexOf(card),1)
+      hand.splice(hand.indexOf(card), 1)
 
-      gameRef.child('players/' + playerID).update({
-        playerHasPlayed: true,
-        hand,
-        selectedCard: card
-      })
-      .then(() => {
-            gameRef.once("value").then(gameData => {
-              const game = gameData.val()
-              if (game.players.every(player => player.playerHasPlayed)) {
-                cardInPlay = game.cardsInPlay.sort().reverse()
-                cardsSelected = game.players
-                                    .map((player, index) => ({card: player.selectedCard, player: index}))
-                                    .sort((obj1,obj2) => obj1.card < obj2.card)
+      gameRef
+        .child('players/' + playerID)
+        .update({
+          playerHasPlayed: true,
+          hand,
+          selectedCard: card
+        })
+        .then(() => {
+          gameRef.once('value').then(gameData => {
+            const game = gameData.val()
+            if (game.players.every(player => player.playerHasPlayed)) {
+              cardInPlay = game.cardsInPlay.sort().reverse()
+              cardsSelected = game.players
+                .map((player, index) => ({
+                  card: player.selectedCard,
+                  player: index
+                }))
+                .sort((obj1, obj2) => obj1.card < obj2.card)
 
-                 const updates = {}
-                cardsSelected.forEach((card) => {
-                  moneyGained = game.players[card.player].moneyGained 
-                                  ? game.players[card.player].moneyGained.concat(cardsInPlay.pop())
-                                  : [cardsInPlay.pop()]
+              const updates = {}
+              cardsSelected.forEach(card => {
+                moneyGained = game.players[card.player].moneyGained
+                  ? game.players[card.player].moneyGained.concat(
+                      cardsInPlay.pop()
+                    )
+                  : [cardsInPlay.pop()]
 
-                  updates[`players/${card.player}/moneyGained`]= moneyGained
-                  updates[`players/${card.player}/selectedCard`]= null
-                  updates[`players/${card.player}/playerHasPlayed`]= false 
-                })
-                gameRef.update(updates)
+                updates[`players/${card.player}/moneyGained`] = moneyGained
+                updates[`players/${card.player}/selectedCard`] = null
+                updates[`players/${card.player}/playerHasPlayed`] = false
+              })
+              gameRef.update(updates)
 
-                startNewRoundPhase2(gameID)
-                
-              }
+              startNewRoundPhase2(gameID)
+            }
             res.status(200).end()
-            })
           })
-      
+        })
     })
   })
 )
-
