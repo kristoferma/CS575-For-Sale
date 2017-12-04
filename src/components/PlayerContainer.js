@@ -37,24 +37,26 @@ export default class PlayerContainer extends Component {
               betAmount={player.betAmount}
               playerHasPlayed={player.playerHasPlayed}
             />
-            <div
-              className="bet_fold_buttons"
-            >
-              <input
-                type="button"
-                onClick={this.handleBetClick(player.playerNumber).bind(this)}
-                value="Bet"
-                id = "bet_button"
-                className="btn btn-success"
-              />
-              <input
-                type="button"
-                onClick={this.handleFoldClick(player.playerNumber).bind(this)}
-                value="Fold"
-                className="btn btn-danger"
-                id = "fold_button"
-              />
-            </div>
+            {(this.props.phase1.length !=0)
+             ? <div
+                className="bet_fold_buttons"
+              >
+                <input
+                  type="button"
+                  onClick={this.handleBetClick(player.playerNumber).bind(this)}
+                  value="Bet"
+                  id = "bet_button"
+                  className="btn btn-success"
+                />
+                <input
+                  type="button"
+                  onClick={this.handleFoldClick(player.playerNumber).bind(this)}
+                  value="Fold"
+                  className="btn btn-danger"
+                  id = "fold_button"
+                />
+              </div>
+              : null}
           </div>
         ))}
       </div>
