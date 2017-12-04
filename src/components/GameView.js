@@ -45,16 +45,21 @@ export default class GameView extends Component {
 
     return (
       <div className="game_board">
-        <PlayerContainer players={this.state.players} />
+        <PlayerContainer
+          gameID={this.props.match.params.gameID}
+          players={this.state.players}
+        />
         <div className="round_view">
-          {this.state.cardsInPlay.length !== 0 ?
-          this.state.cardsInPlay.map((card)=>(
-            this.state.phase1 ? (
-              <PropertyCard property={card} />
-            ) : (
-              <MoneyCard money={card} />
-            )
-          )) : null}
+          {this.state.cardsInPlay.length !== 0
+            ? this.state.cardsInPlay.map(
+                card =>
+                  this.state.phase1 ? (
+                    <PropertyCard property={card} />
+                  ) : (
+                    <MoneyCard money={card} />
+                  )
+              )
+            : null}
           <div className="deck">
             <div className="innerDeck" />
           </div>

@@ -145,6 +145,7 @@ startNewRound = gameID => {
 
     newPlayerInfo = game.players.forEach((player, index) => {
       updates[`players/${index}/playerHasPlayed`] = false
+      updates[`players/${index}/betAmount`] = 0
     })
     gameRef.update(updates)
     return true
@@ -160,7 +161,7 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
     gameRef.once('value').then(gameData => {
       const game = gameData.val()
 
-      if (playerID != game.currentPlayerTurn) {
+      if (playerID != game.currentPlayerTurn || !game.phase1) {
         return res.status(400).end()
       }
       const player = game.players[playerID]
@@ -204,11 +205,16 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
             if (cardsInPlay.length == 0) startNewRound(gameID)
           })
       } else if (action == 'bet') {
-        const betAmount = maxBet(players) + 1
-        const currentPlayerTurn =
-          game.currentPlayerTurn == game.currentNumberOfPlayers
-            ? 1
-            : game.currentPlayerTurn + 1
+        const betAmount = maxBet(game.players) + 1
+        const currentPlayerTurn = nextPlayersTurn(
+          game.currentPlayerTurn,
+          game.numberOfPlayers
+        )
+
+        gameRef.update({
+          [`/players/${playerID}/betAmount`]: betAmount,
+          currentPlayerTurn
+        })
       } else return res.status(400).end()
       res.status(200).end()
     })
@@ -218,7 +224,7 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
 const maxBet = players => {
   let maxBet = 0
   players.forEach(player => {
-    maxBet = max(player.betAmount, maxBet)
+    maxBet = Math.max(player.betAmount, maxBet)
   })
   return maxBet
 }
