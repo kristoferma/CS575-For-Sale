@@ -9,7 +9,7 @@ import WinningView from './WinningView'
 
 import './../App.css'
 
-const PLAYER = localStorage.getItem('playerIndex')
+const PLAYER = localStorage.getItem('playerIndex') || 0
 
 var config = {
   apiKey: 'AIzaSyDjC1dJFrFpBTiXlCGbMR4YY48RtfOTZV8',
@@ -40,7 +40,7 @@ export default class GameView extends Component {
       .ref('games/' + this.props.match.params.gameID)
       .on('value', snapshot => {
         const game = snapshot.val()
-        if (!game.hand) game.hand = []
+        game.players.forEach((player, index) => player.hand ? game.players[index].hand =[] : null);
         if (!game.phase1) game.phase1 = []
         if (!game.phase2) game.phase2 = []
         this.setState(game)
