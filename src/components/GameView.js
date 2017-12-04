@@ -41,24 +41,20 @@ export default class GameView extends Component {
   render() {
     //return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
 
-    var elements = []
     var playerCards = []
-
-    this.state.cardsInPlay.forEach(card => {
-      elements.push(
-        this.state.phase1 ? (
-          <PropertyCard property={card} />
-        ) : (
-          <MoneyCard money={card} />
-        )
-      )
-    })
 
     return (
       <div className="game_board">
         <PlayerContainer players={this.state.players} />
         <div className="round_view">
-          {elements}
+          {this.state.cardsInPlay.length !== 0 ?
+          this.state.cardsInPlay.map((card)=>(
+            this.state.phase1 ? (
+              <PropertyCard property={card} />
+            ) : (
+              <MoneyCard money={card} />
+            )
+          )) : null}
           <div className="deck">
             <div className="innerDeck" />
           </div>
