@@ -40,7 +40,6 @@ export default class PlayerContainer extends Component {
             <div
               className="flex-container"
               style={{ justifyContent: 'center' }}
-              n
             >
               <input
                 type="button"
