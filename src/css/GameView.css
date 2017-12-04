@@ -70,3 +70,54 @@
   margin-top: -220px;
 
 }
+
+.winner_screen{
+  display: flex;
+  flex-direction: column;
+  background-image: url = ("public/img/winner.jpeg")
+          
+}
+
+
+.winner{
+  margin-left: 10%;
+  text-align: center;
+}
+
+#winner_title{
+  font-size: 4em;
+  color:#D88C03;
+}
+.remaining_players{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#winner_name{
+  font-size: 3em;
+  color:#5A7004;
+}
+
+#winner_score{
+  font-size: 3em;
+  font-style:italic;
+  color:#5A7004;
+}
+
+
+
+.each_player{
+  width: 150px;
+  height: 120px;
+  margin: 50px 100px 100px;
+  border-radius: 5px;
+  background-color: #F5F7B8;
+  text-align: center;
+  padding: 20px;
+  border-color: #597003;
+  border-style: solid;
+  color:#597003;
+  font-weight: bold;
+  font-size: 1.5em;
+}

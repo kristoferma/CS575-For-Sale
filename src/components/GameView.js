@@ -5,6 +5,8 @@ import firebase from 'firebase'
 import PlayerContainer from './PlayerContainer'
 import PropertyCard from './PropertyCard'
 import MoneyCard from './MoneyCard'
+import WinningView from './WinningView'
+
 
 import '../css/GameView.css'
 
@@ -41,8 +43,6 @@ export default class GameView extends Component {
   render() {
     //return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
 
-    var playerCards = []
-
     return (
       <div className="game_board">
         <PlayerContainer players={this.state.players} />
@@ -66,7 +66,11 @@ export default class GameView extends Component {
               ))
             : null}
         </div>
+          <div>
+            <WinningView players = {this.state.players} /> 
+          </div>
       </div>
     )
   }
 }
+
