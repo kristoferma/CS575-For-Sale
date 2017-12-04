@@ -64,7 +64,7 @@ export default class GameView extends Component {
           </div>
         </div>
         <div className="players_card">
-          {this.state.players.length !== 0
+          {this.state.players.length !== 0 && this.state.players[0].hand
             ? this.state.players[0].hand.map(card => (
                 <PropertyCard property={card} />
               ))
