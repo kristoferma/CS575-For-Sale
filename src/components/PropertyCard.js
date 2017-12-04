@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
-import '../css/Card.css'
-import '../css/Common.css'
+import './../App.css'
 
 export default class PropertyCard extends Component {
   constructor(props) {

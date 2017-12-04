@@ -55,3 +55,298 @@ body,
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
+.bet_box{
+  float: left;
+  margin-top: 20px;
+}
+
+.bet_box img {
+  height: 100px;
+  line-height: 100px;
+}
+
+.bet_box_info{
+  padding: 0px;
+  margin: 0px;
+}
+
+.bet_box_info p {
+  font-size: 1.2em;
+}
+
+.card_base {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  width: 150px;
+  height: 220px;
+  border-radius: 10px;
+  background: #f5f5dc;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+.players_card {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.players_card > div:first-child {
+  margin-left: 1%;
+}
+
+.players_card > div {
+  margin-left: -100%;
+}
+
+.card_base img {
+  height: 220px;
+  width: 150px;
+  border-radius: 10px;
+  border-color: #76a90b;
+  border-style: solid;
+}
+
+.card_money {
+  height: 220px;
+  width: 150px;
+  background: #d9cb2c;
+  border-radius: 10px;
+  border-color: #9c892b;
+  border-style: solid;
+}
+
+.money_decoration {
+  display: flex;
+  flex-direction: column;
+}
+
+.dollar_sign {
+  font-size: 12em;
+  color: grey;
+  margin-top: -100px;
+  text-align: center;
+}
+
+.sign_one {
+  margin-left: 5px;
+  font-size: 2em;
+}
+
+.sign_two {
+  text-align: right;
+  margin-right: 5px;
+  font-size: 2em;
+  margin-top: -100px;
+}
+.no_margin_padding {
+  padding: 0px;
+  margin: 0px;
+}
+
+.pixel_img {
+  /* needed to make pixels art clearer*/
+
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: pixelated;
+}
+.game_board {
+  background: white;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+
+  flex-grow: 1;
+}
+.round_view {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.deck {
+  width: 150px;
+  height: 220px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #76a90b;
+  background: white;
+}
+
+.innerDeck {
+  width: 130px;
+  height: 200px;
+  margin: 7px;
+  border-radius: 10px;
+  background: #76a90b;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.playerInformation {
+  width: 100%;
+  display: flex;
+}
+
+.bet_fold_buttons{
+  display: flex;
+  flex-direction: column;
+}
+
+#bet_button{
+  margin: 20px 0px -5px 0px;
+}
+
+#fold_button{
+    margin: 10px 0px -5px 0px;
+}
+
+.bottom_right{
+  font-size: 2em;
+  margin-right: 5px;
+  margin-top: 130px;
+  text-align: right;
+
+}
+
+.top_left{
+  font-size: 2em;
+  margin-left: 5px;
+  margin-top: -220px;
+
+}
+
+.winner_screen{
+  display: flex;
+  flex-direction: column; 
+}
+
+#firework{
+  width: 20%;
+  height: 20%;
+}
+
+.winner_information{
+  display: flex;
+  flex-direction: column;
+}
+
+.winner{
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  margin-top: 5%;
+}
+
+#winner_title{
+  font-size: 4em;
+  color: #EAD32F;
+}
+.remaining_players{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#winner_name{
+  font-size: 2.5em;
+  color:#dc3545;
+}
+
+#winner_score{
+  font-size: 3em;
+  font-style:italic;
+  color:#dc3545;
+}
+
+.each_player{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 150px;
+  height: 50px;
+  margin: 50px 100px 100px;
+  border-radius: 5px;
+  background-color: #FDEDEC;
+  text-align: center;
+  padding: 5px;
+  border-color: #EAD32F;
+  border-style: solid;
+  color:#050AA7;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.player_card {
+
+  width: 250px;
+  height: auto;
+  background-color: white;
+  box-shadow: 3px 5px 5px grey;
+  border-color: #597003;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  padding: 12px;
+  margin: 20px 20px 0px 20px;
+  float:left;
+
+}
+
+.player_name_header{
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  text-align: left;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  width: auto;
+  overflow: hidden;
+  border: none;
+  background: white;
+  color: #597003;
+  font: 16em;
+  margin-bottom: 0px;
+}
+
+.coin {
+
+  float: left;
+  margin: 10px 2px 0px 10px;
+  width: 65px;
+  height: 65px;
+
+
+}
+
+.coin_box {
+  display: block;
+  float: left;
+  border-radius: 5px;
+  margin: 0px 0px auto auto;
+  width: 100%;
+  background-color: #F5F7B8;
+
+}
+
+.coin_font {
+  float: right;
+  position: relative;
+  font-size: 3em;
+  margin-right: 2px;
+  top: 50%;
+  color: #597003;
+}

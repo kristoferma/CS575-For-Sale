@@ -7,7 +7,7 @@ import PropertyCard from './PropertyCard'
 import MoneyCard from './MoneyCard'
 import WinningView from './WinningView'
 
-import '../css/GameView.css'
+import './../App.css'
 
 const PLAYER = 0
 
