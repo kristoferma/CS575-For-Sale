@@ -97,7 +97,7 @@ exports.joinGame = functions.https.onRequest((req, res) =>
       const game = gameData.val()
       const currentNumberOfPlayers = Object.keys(game.players).length
       if (currentNumberOfPlayers == game.numberOfPlayers)
-        return res.status(300).send('Game is already full')
+        return res.sendStatus(300)
 
       gamePlayersRef
         .update({
@@ -113,13 +113,9 @@ exports.joinGame = functions.https.onRequest((req, res) =>
         .then(() => {
           if (currentNumberOfPlayers + 1 === game.numberOfPlayers) {
             startNewRound(gameID).then(() =>
-              res.status(200).send(currentNumberOfPlayers)
+              res.end(String(currentNumberOfPlayers))
             )
-          } else res.status(200).send(currentNumberOfPlayers)
-        })
-        .catch(err => {
-          console.error(err)
-          res.sendStatus(500)
+          } else res.end(String(currentNumberOfPlayers))
         })
     })
   })
