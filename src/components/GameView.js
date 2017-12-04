@@ -9,7 +9,7 @@ import WinningView from './WinningView'
 
 import '../css/GameView.css'
 
-const PLAYER = 0
+const PLAYER = localStorage.getItem('playerIndex')
 
 var config = {
   apiKey: 'AIzaSyDjC1dJFrFpBTiXlCGbMR4YY48RtfOTZV8',
@@ -82,8 +82,8 @@ export default class GameView extends Component {
           </div>
         </div>
         <div className="players_card">
-          {this.state.players.length !== 0 && this.state.players[0].hand
-            ? this.state.players[0].hand.map(card => (
+          {this.state.players.length !== 0 && this.state.players[PLAYER].hand
+            ? this.state.players[PLAYER].hand.map(card => (
                 <PropertyCard
                   property={card}
                   clickHandler={this.phase2ClickHandler(card)}

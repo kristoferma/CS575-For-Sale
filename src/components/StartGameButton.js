@@ -17,6 +17,9 @@ export default class StartGameButton extends Component {
     )
       .then(response => response.text())
       .then(gameID => {
+        window.localStorage.setItem('userID', this.state.userID)
+        window.localStorage.setItem('playerIndex', 0)
+        window.localStorage.setItem('gameID', gameID)
         if (gameID) {
           window.location = '/game/' + gameID
         } else {

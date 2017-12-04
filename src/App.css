@@ -16,6 +16,28 @@ body,
   color: white;
   text-align: center;
   font-family: Impact, Charcoal, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header > .title {
+  flex: 1 1 auto;
+}
+
+header > a > span {
+  white-space: nowrap;
+}
+
+header > a {
+  color: white;
+}
+
+header > a,
+header > span {
+  flex: 0 0 auto; /* Forces side columns to stay same width */
+  width: 170px; /* Sets the width of side columns */
+  align-content: center;
 }
 
 .App-title {
@@ -26,13 +48,18 @@ body,
   font-size: large;
 }
 
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .App-StartGameButton {
   padding-top: 5%;
 }
 
 .div-default {
   text-align: left;
-  margin-left: 40%;
   display: flex;
   width: 200px;
   flex-direction: column;

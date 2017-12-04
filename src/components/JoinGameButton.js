@@ -24,9 +24,12 @@ export default class StartGameButton extends Component {
             ? Promise.resolve(response.text())
             : Promise.reject(response.text())
       )
-      .then(gameID => {
-        if (gameID) {
-          window.location = '/game/' + gameID
+      .then(playerNumber => {
+        if (playerNumber) {
+          window.localStorage.setItem('userID', this.state.userID)
+          window.localStorage.setItem('playerIndex', playerNumber)
+          window.localStorage.setItem('gameID', this.state.gameID)
+          window.location = '/game/' + this.state.gameID
         } else {
           this.setState({ error: 'Could not create new game' })
         }

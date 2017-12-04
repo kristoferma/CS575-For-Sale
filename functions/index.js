@@ -112,12 +112,14 @@ exports.joinGame = functions.https.onRequest((req, res) =>
         })
         .then(() => {
           if (currentNumberOfPlayers + 1 === game.numberOfPlayers) {
-            startNewRound(gameID).then(() => res.status(200).send(gameID))
-          } else res.status(200).send(gameID)
+            startNewRound(gameID).then(() =>
+              res.status(200).send(currentNumberOfPlayers)
+            )
+          } else res.status(200).send(currentNumberOfPlayers)
         })
         .catch(err => {
           console.error(err)
-          res.status(500).end(error)
+          res.sendStatus(500)
         })
     })
   })
