@@ -46,13 +46,12 @@ export default class GameView extends Component {
     var elements = [];
     var playerCards = [];
 
-    this.state.players.forEach((player)=>{
-      player.hand.forEach((card) =>{
-          playerCards.push(<PropertyCard property={card}/>);
-        })
+    if(this.state.players[0])
+    {
+      this.state.players[0].hand.forEach((card) =>{
+            playerCards.push(<PropertyCard property={card}/>);
+          });
     }
-
-  );
 
 
     this.state.cardsInPlay.forEach((card)=>{
