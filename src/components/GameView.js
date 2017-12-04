@@ -36,7 +36,11 @@ export default class GameView extends Component {
     database
       .ref('games/' + this.props.match.params.gameID)
       .on('value', snapshot => {
-        this.setState(snapshot.val())
+        const game = snapshot.val()
+        if (!game.hand) game.hand = []
+        if (!game.phase1) game.phase1 = []
+        if (!game.phase2) game.phase2 = []
+        this.setState(game)
       })
   }
 
@@ -45,16 +49,21 @@ export default class GameView extends Component {
 
     return (
       <div className="game_board">
-        <PlayerContainer players={this.state.players} />
+        <PlayerContainer
+          gameID={this.props.match.params.gameID}
+          players={this.state.players}
+        />
         <div className="round_view">
-          {this.state.cardsInPlay.length !== 0 ?
-          this.state.cardsInPlay.map((card)=>(
-            this.state.phase1 ? (
-              <PropertyCard property={card} />
-            ) : (
-              <MoneyCard money={card} />
-            )
-          )) : null}
+          {this.state.cardsInPlay.length !== 0
+            ? this.state.cardsInPlay.map(
+                card =>
+                  this.state.phase1.length !== 0 ? (
+                    <PropertyCard property={card} />
+                  ) : (
+                    <MoneyCard money={card} />
+                  )
+              )
+            : null}
           <div className="deck">
             <div className="innerDeck" />
           </div>
