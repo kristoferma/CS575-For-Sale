@@ -40,7 +40,9 @@ export default class GameView extends Component {
       .ref('games/' + this.props.match.params.gameID)
       .on('value', snapshot => {
         const game = snapshot.val()
-        game.players.forEach((player, index) => player.hand ? game.players[index].hand =[] : null);
+        game.players.forEach((player, index) => {
+          if (!player.hand) game.players[index].hand = []
+        })
         if (!game.phase1) game.phase1 = []
         if (!game.phase2) game.phase2 = []
         this.setState(game)
@@ -65,8 +67,8 @@ export default class GameView extends Component {
         <PlayerContainer
           gameID={this.props.match.params.gameID}
           players={this.state.players}
-          phase1 ={this.state.phase1}
-          phase2 ={this.state.phase2}
+          phase1={this.state.phase1}
+          phase2={this.state.phase2}
         />
         <div className="round_view">
           {this.state.cardsInPlay.length !== 0
@@ -84,6 +86,7 @@ export default class GameView extends Component {
           </div>
         </div>
         <div className="players_card">
+          {console.log(this.state.players[PLAYER])}
           {this.state.players.length !== 0 && this.state.players[PLAYER].hand
             ? this.state.players[PLAYER].hand.map(card => (
                 <PropertyCard
