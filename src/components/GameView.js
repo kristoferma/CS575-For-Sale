@@ -19,10 +19,10 @@ var config = {
 firebase.initializeApp(config)
 const database = firebase.database()
 
-function Phase1(props){
-  return(
+function Phase1(props) {
+  return (
     <div className="game_board">
-      <PlayerContainer players={props.players}/>
+      <PlayerContainer gameID={props.gameID} players={props.players} />
       <div className="round_view">
         {props.elements}
         <div className="deck">
@@ -30,15 +30,16 @@ function Phase1(props){
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-function Phase2(props){ //TODO implement phase2 money cards
-  return(
+function Phase2(props) {
+  //TODO implement phase2 money cards
+  return (
     <div className="game_board">
-      <PlayerContainer players={props.players}/>
+      <PlayerContainer players={props.players} />
     </div>
-  );
+  )
 }
 
 export default class GameView extends Component {
@@ -58,20 +59,28 @@ export default class GameView extends Component {
       })
   }
   render() {
-    //return <pre>{JSON.stringify(this.state, null, 2)}</pre>
-
     var elements = []
 
     this.state.cardsInPlay.forEach(card => {
       elements.push(<PropertyCard property={card} />)
     })
 
-    if(this.state.phase1)
-    {
-      return(<Phase1 elements={elements} players={this.state.players} />)
-    }
-    else {
-      return(<Phase2 elements={elements} players={this.state.players} />)
+    if (this.state.phase1) {
+      return (
+        <Phase1
+          elements={elements}
+          gameID={this.props.match.params.gameID}
+          players={this.state.players}
+        />
+      )
+    } else {
+      return (
+        <Phase2
+          elements={elements}
+          gameID={this.props.match.params.gameID}
+          players={this.state.players}
+        />
+      )
     }
   }
 }
