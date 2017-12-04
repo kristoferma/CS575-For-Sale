@@ -23,9 +23,12 @@ render(){
 	return(
 		<div className = "winner_screen">
 			<div className = "winner">
-				<p >WINNER</p>
-				<p id = "winner_name">{this.props.players[winnerID].userID}</p>
-				<p id = "winner_score">{winningScore}</p>
+				<img id = "firework" src = "http://cliparting.com/wp-content/uploads/2016/05/Fireworks-clipart-no-background-free-clipart-images-3.png"/>
+					<div className = "winner_information">
+					<p  id = "winner_title">WINNER</p>
+					<p id = "winner_name">{this.props.players[winnerID].userID} - {winningScore} </p>
+					</div>
+				<img id = "firework" src = "http://cliparting.com/wp-content/uploads/2016/05/Fireworks-clipart-no-background-free-clipart-images-3.png"/>
             </div>
 			<div className ="remaining_players">
           			{everyoneResult.map((result) => (

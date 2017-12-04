@@ -29,7 +29,9 @@ export default class GameView extends Component {
     this.state = {
       numberOfPlayers: 0,
       players: [],
-      cardsInPlay: []
+      cardsInPlay: [],
+      phase1: [],
+      phase2: []
     }
   }
 
@@ -56,7 +58,8 @@ export default class GameView extends Component {
 
   render() {
     //return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
-
+    if (this.state.phase1.length == 0 && this.state.phase2.length == 0)
+      return <WinningView players={this.state.players} />
     return (
       <div className="game_board">
         <PlayerContainer
@@ -87,9 +90,6 @@ export default class GameView extends Component {
                 />
               ))
             : null}
-        </div>
-        <div>
-          <WinningView players={this.state.players} />
         </div>
       </div>
     )
