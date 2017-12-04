@@ -17,6 +17,45 @@
   border-style: solid;
 }
 
+.card_money{
+  height: 220px;
+  width: 150px;
+  background: #D9CB2C;
+  border-radius: 10px;
+  border-color: #9C892B;
+  border-style: solid;
+}
+
+.money_decoration{
+  display: flex;
+  flex-direction: column;
+}
+
+.dollar_sign{
+  font-size: 12em;
+  color: grey;
+  margin-top: -100px;
+  text-align: center;
+}
+
+.sign_one{
+  margin-left: 5px;
+  font-size: 2em;
+}
+
+.sign_two{
+  text-align: right;
+  margin-right: 5px;
+  font-size: 2em;
+  margin-top: -100px;
+}
+
+
+
+
+
+
+
 
 .property_1:before, .property_1:after {
   content: "1";

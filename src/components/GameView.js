@@ -4,6 +4,8 @@ import firebase from 'firebase'
 
 import PlayerContainer from './PlayerContainer'
 import PropertyCard from './PropertyCard'
+import MoneyCard from './MoneyCard'
+
 
 import '../css/GameView.css'
 
@@ -42,7 +44,7 @@ export default class GameView extends Component {
 
     this.state.cardsInPlay.forEach((card)=>{
       elements.push(
-      this.state.phase1 ? <PropertyCard property={card}/> : <MoneyCard money = {Card}/>
+      this.state.phase1 ? <PropertyCard property={card}/> : <MoneyCard money = {card}/>
       );
     });
 
