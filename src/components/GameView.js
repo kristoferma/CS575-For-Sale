@@ -7,7 +7,7 @@ import PropertyCard from './PropertyCard'
 import MoneyCard from './MoneyCard'
 import WinningView from './WinningView'
 
-import '../css/GameView.css'
+import './../App.css'
 
 const PLAYER = localStorage.getItem('playerIndex')
 
@@ -65,6 +65,8 @@ export default class GameView extends Component {
         <PlayerContainer
           gameID={this.props.match.params.gameID}
           players={this.state.players}
+          phase1 ={this.state.phase1}
+          phase2 ={this.state.phase2}
         />
         <div className="round_view">
           {this.state.cardsInPlay.length !== 0

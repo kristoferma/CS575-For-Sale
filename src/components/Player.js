@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 
 import coin from '../img/coin.png'
 
-import '../css/Player.css'
-import '../css/Common.css'
+import './../App.css'
 
 export default class Player extends Component {
   render() {

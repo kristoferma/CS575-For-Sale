@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
-import '../css/Card.css'
-import '../css/Common.css'
+import './../App.css'
 
 const MoneyImage = ({ money }) => {
 if (typeof money !== 'number' || money < 0) money = 'err'

@@ -3,8 +3,7 @@ import React, { Component } from 'react'
 import bid_img from '../img/bid.png'
 import pass_img from '../img/pass.png'
 
-import '../css/BetStatus.css'
-import '../css/Common.css'
+import './../App.css'
 
 function BetAmountDisplay(props) {
   return (
