@@ -374,3 +374,12 @@ form {
   top: 50%;
   color: #597003;
 }
+
+.selected_cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: auto;
+  margin-left: 20px;
+}
