@@ -32,3 +32,7 @@
  Tue Dec 05 2017 16:46:04 GMT-0500 (Eastern Standard Time)
 [debug] [2017-12-05T21:46:05.426Z] <<< HTTP RESPONSE 200
 [debug] [2017-12-05T21:46:05.430Z] <<< HTTP RESPONSE 200
+[info] +  functions: createNewGame: http://localhost:5000/cs575-for-sale/us-central1/createNewGame
+[info] +  functions: joinGame: http://localhost:5000/cs575-for-sale/us-central1/joinGame
+[info] +  functions: phase1Play: http://localhost:5000/cs575-for-sale/us-central1/phase1Play
+[info] +  functions: phase2Play: http://localhost:5000/cs575-for-sale/us-central1/phase2Play

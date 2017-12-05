@@ -337,7 +337,7 @@ exports.phase2Play = functions.https.onRequest((req, res) =>
                 .sort((obj1, obj2) => obj1.card < obj2.card)
 
               const updates = {}
-              updates[`selectedCards`] = game.players.map((player) => player.selectedCard)
+              updates[`selectedCards`] = game.players.map((player, user) => ({card: player.selectedCard, player: player.userID}))
               cardsSelected.forEach(card => {
                 moneyGained = game.players[card.player].moneyGained
                   ? game.players[card.player].moneyGained.concat(
