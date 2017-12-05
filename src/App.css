@@ -225,6 +225,7 @@ form {
 .playerInformation {
   width: 100%;
   display: flex;
+  flex-grow: 1;
 }
 
 .bet_fold_buttons{
@@ -318,9 +319,6 @@ form {
 }
 
 .player_card {
-
-  width: 250px;
-  height: auto;
   background-color: white;
   box-shadow: 3px 5px 5px grey;
   border-color: #597003;
@@ -345,7 +343,6 @@ form {
   border: none;
   background: white;
   color: #597003;
-  font: 16em;
   margin-bottom: 0px;
 }
 
@@ -353,8 +350,8 @@ form {
 
   float: left;
   margin: 10px 2px 0px 10px;
-  width: 65px;
-  height: 65px;
+  width: 60%;
+  height: 60%;
 
 
 }
@@ -364,7 +361,6 @@ form {
   float: left;
   border-radius: 5px;
   margin: 0px 0px auto auto;
-  width: 100%;
   background-color: #F5F7B8;
 
 }
@@ -372,7 +368,7 @@ form {
 .coin_font {
   float: right;
   position: relative;
-  font-size: 3em;
+  font-size: 2em;
   margin-right: 2px;
   top: 50%;
   color: #597003;
