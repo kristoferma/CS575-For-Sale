@@ -65,6 +65,9 @@ export default class PlayerContainer extends Component {
                       onClick={this.handleBetClick(player.playerNumber).bind(
                         this
                       )}
+                      disabled={
+                        this.props.currentPlayerTurn !== player.playerNumber - 1
+                      }
                       value="Bet"
                       id="bet_button"
                       className="btn btn-success"
@@ -74,6 +77,9 @@ export default class PlayerContainer extends Component {
                       onClick={this.handleFoldClick(player.playerNumber).bind(
                         this
                       )}
+                      disabled={
+                        this.props.currentPlayerTurn !== player.playerNumber - 1
+                      }
                       value="Fold"
                       className="btn btn-danger"
                       id="fold_button"
