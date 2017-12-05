@@ -66,6 +66,7 @@ export default class GameView extends Component {
       <div className="game_board">
         <PlayerContainer
           gameID={this.props.match.params.gameID}
+          numberOfTurn={this.state.numberOfTurn}
           players={this.state.players}
           phase1={this.state.phase1}
           phase2={this.state.phase2}
