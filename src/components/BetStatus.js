@@ -21,7 +21,7 @@ function BidState(props) {
         <BetAmountDisplay betAmount="FOLD" />
       </div>
     ) //TODO not sure if betAmountDisplay here is redundant...
-  } else if (props.betAmount > 0 && props.playerHasPlayed == true) {
+  } else if (props.betAmount > 0) {
     return (
       <div class="bet_box">
         <img class="pixel_img" src={bid_img} alt="Nope" />
