@@ -91,12 +91,14 @@ export default class GameView extends Component {
           <div className="deck">
             <div className="innerDeck" />
           </div>
+          { (this.state.phase2.length < 30) ?
           <div className="selected_cards">
             <h2>Previous round:</h2>
             {this.state.selectedCards.map(selectedCard => (
               <p><span className = "user">{selectedCard.player+": "}</span>{`Property: ${selectedCard.card} Money Gained: ${selectedCard.money}`}</p>
             ))}
           </div>
+          : null}
         </div>
         <div className="players_card">
           {this.state.players.length !== 0 && this.state.players[PLAYER].hand
