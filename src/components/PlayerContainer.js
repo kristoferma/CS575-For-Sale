@@ -7,6 +7,9 @@ export default class PlayerContainer extends Component {
   constructor(props) {
     super(props)
     console.log(props)
+    this.state = {
+      playerIndex: window.localStorage.getItem('playerIndex')
+    }
   }
 
   handleBetClick(playerID) {
@@ -47,7 +50,7 @@ export default class PlayerContainer extends Component {
                 ) : null}
               </div>
             ))
-          : this.props.players.map(player => (
+          : this.props.players.map((player, index) => (
               <div className="playerInformation">
                 <Player
                   userID={player.userID}
@@ -65,7 +68,8 @@ export default class PlayerContainer extends Component {
                   />
                 ) : null}
                 {this.props.phase2.length === 30 &&
-                this.props.numberOfTurn > 0 ? (
+                this.props.numberOfTurn > 0 &&
+                this.state.playerIndex == index ? (
                   <div className="bet_fold_buttons">
                     <input
                       type="button"
