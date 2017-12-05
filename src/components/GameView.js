@@ -76,6 +76,7 @@ export default class GameView extends Component {
           phase1={this.state.phase1}
           phase2={this.state.phase2}
         />
+        {console.log(this.state.players)}
         <div className="round_view">
           {this.state.cardsInPlay.length !== 0
             ? this.state.cardsInPlay.map(

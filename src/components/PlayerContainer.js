@@ -37,6 +37,7 @@ export default class PlayerContainer extends Component {
                   money={
                     player.moneyGained.reduce((a, b) => a + b, 0) + player.money
                   }
+                  playerHasPlayed={player.playerHasPlayed}
                 />
                 {this.props.phase2.length === 30 ? (
                   <BetStatus
