@@ -50,8 +50,10 @@ export default class PlayerContainer extends Component {
                   userID={player.userID}
                   money={player.money}
                   isCurrentPlayer={
-                    this.props.currentPlayerTurn === player.playerNumber - 1
+                    this.props.currentPlayerTurn === player.playerNumber - 1 &&
+                    this.props.phase2.length === 30
                   }
+                  playerHasPlayed={player.playerHasPlayed}
                 />
                 {this.props.phase2.length === 30 ? (
                   <BetStatus

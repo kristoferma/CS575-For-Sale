@@ -332,6 +332,10 @@ form {
   box-shadow: 3px 5px 5px #76a90b;
 }
 
+.player_card.player_has_played {
+  box-shadow: 3px 5px 5px #d9cb2c;
+}
+
 .player_name_header {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;

@@ -10,7 +10,7 @@ export default class Player extends Component {
       <div
         class={`player_card ${
           this.props.isCurrentPlayer ? 'current_player_card' : ''
-        }`}
+        } ${this.props.playerHasPlayed ? 'player_has_played' : ''}`}
       >
         <p class="player_name_header">
           <b>{this.props.userID}</b>
