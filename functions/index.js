@@ -347,7 +347,7 @@ exports.phase2Play = functions.https.onRequest((req, res) =>
                 selectedCards.push({
                   card: card.card,
                   player: game.players[card.player].userID,
-                  money: moneyGained
+                  money: moneyGained[moneyGained.length - 1]
                 })
                 updates[`players/${card.player}/moneyGained`] = moneyGained
                 updates[`players/${card.player}/selectedCard`] = null
