@@ -83,7 +83,7 @@ form {
   margin-top: 10px;
 }
 
-.bet_box{
+.bet_box {
   float: left;
   margin-top: 20px;
 }
@@ -93,7 +93,7 @@ form {
   line-height: 100px;
 }
 
-.bet_box_info{
+.bet_box_info {
   padding: 0px;
   margin: 0px;
 }
@@ -220,87 +220,85 @@ form {
 .flex-container {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  justify-content: center;
 }
 
 .playerInformation {
-  width: 100%;
   display: flex;
-  flex-grow: 1;
 }
 
-.bet_fold_buttons{
+.bet_fold_buttons {
   display: flex;
   flex-direction: column;
 }
 
-#bet_button{
+#bet_button {
   margin: 20px 0px -5px 0px;
 }
 
-#fold_button{
-    margin: 10px 0px -5px 0px;
+#fold_button {
+  margin: 10px 0px -5px 0px;
 }
 
-.bottom_right{
+.bottom_right {
   font-size: 2em;
   margin-right: 5px;
   margin-top: 130px;
   text-align: right;
-
 }
 
-.top_left{
+.top_left {
   font-size: 2em;
   margin-left: 5px;
   margin-top: -220px;
-
 }
 
-.winner_screen{
-  display: flex;
-  flex-direction: column; 
-}
-
-#firework{
-  width: 20%;
-  height: 20%;
-}
-
-.winner_information{
+.winner_screen {
   display: flex;
   flex-direction: column;
 }
 
-.winner{
+#firework {
+  width: 20%;
+  height: 20%;
+}
+
+.winner_information {
+  display: flex;
+  flex-direction: column;
+}
+
+.winner {
   text-align: center;
   display: flex;
   flex-direction: row;
-  justify-content: center; 
+  justify-content: center;
   margin-top: 5%;
 }
 
-#winner_title{
+#winner_title {
   font-size: 4em;
-  color: #EAD32F;
+  color: #ead32f;
 }
-.remaining_players{
+.remaining_players {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-#winner_name{
+#winner_name {
   font-size: 2.5em;
-  color:#dc3545;
+  color: #dc3545;
 }
 
-#winner_score{
+#winner_score {
   font-size: 3em;
-  font-style:italic;
-  color:#dc3545;
+  font-style: italic;
+  color: #dc3545;
 }
 
-.each_player{
+.each_player {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -308,12 +306,12 @@ form {
   height: 50px;
   margin: 50px 100px 100px;
   border-radius: 5px;
-  background-color: #FDEDEC;
+  background-color: #fdedec;
   text-align: center;
   padding: 5px;
-  border-color: #EAD32F;
+  border-color: #ead32f;
   border-style: solid;
-  color:#050AA7;
+  color: #050aa7;
   font-weight: bold;
   font-size: 1.5em;
 }
@@ -327,11 +325,10 @@ form {
   border-width: 2px;
   padding: 12px;
   margin: 20px 20px 0px 20px;
-  float:left;
-
+  float: left;
 }
 
-.player_name_header{
+.player_name_header {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -347,13 +344,10 @@ form {
 }
 
 .coin {
-
   float: left;
   margin: 10px 2px 0px 10px;
   width: 60%;
   height: 60%;
-
-
 }
 
 .coin_box {
@@ -361,8 +355,7 @@ form {
   float: left;
   border-radius: 5px;
   margin: 0px 0px auto auto;
-  background-color: #F5F7B8;
-
+  background-color: #f5f7b8;
 }
 
 .coin_font {
