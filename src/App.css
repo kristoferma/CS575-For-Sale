@@ -328,6 +328,10 @@ form {
   float: left;
 }
 
+.player_card.current_player_card {
+  box-shadow: 3px 5px 5px #76a90b;
+}
+
 .player_name_header {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;

@@ -32,7 +32,13 @@ export default class PlayerContainer extends Component {
       <div className="flex-container">
         {this.props.players.map(player => (
           <div className="playerInformation">
-            <Player userID={player.userID} money={player.money} />
+            <Player
+              userID={player.userID}
+              money={player.money}
+              isCurrentPlayer={
+                this.props.currentPlayerTurn === player.playerNumber - 1
+              }
+            />
             <BetStatus
               betAmount={player.betAmount}
               playerHasPlayed={player.playerHasPlayed}
