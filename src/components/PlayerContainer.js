@@ -53,10 +53,12 @@ export default class PlayerContainer extends Component {
                     this.props.currentPlayerTurn === player.playerNumber - 1
                   }
                 />
-                <BetStatus
-                  betAmount={player.betAmount}
-                  playerHasPlayed={player.playerHasPlayed}
-                />
+                {this.props.phase2.length === 30 ? (
+                  <BetStatus
+                    betAmount={player.betAmount}
+                    playerHasPlayed={player.playerHasPlayed}
+                  />
+                ) : null}
                 {this.props.phase2.length === 30 &&
                 this.props.numberOfTurn > 0 ? (
                   <div className="bet_fold_buttons">
