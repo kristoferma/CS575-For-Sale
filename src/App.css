@@ -379,7 +379,11 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   flex-grow: auto;
   margin-left: 20px;
 }
+
+.user{
+  font-weight: bold;
+}
+

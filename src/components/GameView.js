@@ -94,7 +94,7 @@ export default class GameView extends Component {
           <div className="selected_cards">
             <h2>Previous round:</h2>
             {this.state.selectedCards.map(selectedCard => (
-              <p>{`${selectedCard.player}: ${selectedCard.card}`}</p>
+              <p><span className = "user">{selectedCard.player+": "}</span>{`Property: ${selectedCard.card} Money Gained: ${selectedCard.money}`}</p>
             ))}
           </div>
         </div>

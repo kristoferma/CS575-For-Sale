@@ -337,18 +337,19 @@ exports.phase2Play = functions.https.onRequest((req, res) =>
                 .sort((obj1, obj2) => obj1.card < obj2.card)
 
               const updates = {}
-              updates[`selectedCards`] = game.players.map((player, user) => ({card: player.selectedCard, player: player.userID}))
+              selectedCards = []
               cardsSelected.forEach(card => {
                 moneyGained = game.players[card.player].moneyGained
                   ? game.players[card.player].moneyGained.concat(
                       cardsInPlay.pop()
                     )
                   : [cardsInPlay.pop()]
-
+                selectedCards.push({card: card.card, player: card.player, money: moneyGained})
                 updates[`players/${card.player}/moneyGained`] = moneyGained
                 updates[`players/${card.player}/selectedCard`] = null
                 updates[`players/${card.player}/playerHasPlayed`] = false
               })
+              updates[`selectedCards`] = selectedCards
               gameRef.update(updates)
 
               startNewRoundPhase2(gameID)
