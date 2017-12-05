@@ -66,6 +66,8 @@ export default class GameView extends Component {
       <div className="game_board">
         <PlayerContainer
           gameID={this.props.match.params.gameID}
+          numberOfTurn={this.state.numberOfTurn}
+          currentPlayerTurn={this.state.currentPlayerTurn}
           players={this.state.players}
           phase1={this.state.phase1}
           phase2={this.state.phase2}
@@ -87,12 +89,14 @@ export default class GameView extends Component {
         </div>
         <div className="players_card">
           {this.state.players.length !== 0 && this.state.players[PLAYER].hand
-            ? this.state.players[PLAYER].hand.map(card => (
-                <PropertyCard
-                  property={card}
-                  clickHandler={this.phase2ClickHandler(card)}
-                />
-              ))
+            ? this.state.players[PLAYER].hand
+                .sort((a, b) => a > b)
+                .map(card => (
+                  <PropertyCard
+                    property={card}
+                    clickHandler={this.phase2ClickHandler(card)}
+                  />
+                ))
             : null}
         </div>
       </div>

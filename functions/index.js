@@ -209,7 +209,8 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
 
         const currentPlayerTurn = nextPlayersTurn(
           game.currentPlayerTurn,
-          game.numberOfPlayers
+          game.numberOfPlayers,
+          game.players
         )
 
         gameRef
@@ -232,7 +233,8 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
         const betAmount = maxBet(game.players) + 1
         const currentPlayerTurn = nextPlayersTurn(
           game.currentPlayerTurn,
-          game.numberOfPlayers
+          game.numberOfPlayers,
+          game.players
         )
 
         gameRef.update({
@@ -253,8 +255,14 @@ const maxBet = players => {
   return maxBet
 }
 
-const nextPlayersTurn = (currentPlayerTurn, numberOfPlayers) =>
-  currentPlayerTurn == numberOfPlayers - 1 ? 0 : currentPlayerTurn + 1
+const nextPlayersTurn = (currentPlayerTurn, numberOfPlayers, players) => {
+  let nextPlayer =
+    currentPlayerTurn == numberOfPlayers - 1 ? 0 : currentPlayerTurn + 1
+  if (players.every(player => player.playerHasPlayed)) return nextPlayer
+  if (players[nextPlayer].playerHasPlayed)
+    return nextPlayersTurn(nextPlayer, numberOfPlayers, players)
+  else return nextPlayer
+}
 
 startNewRoundPhase2 = gameID => {
   const db = admin.database()

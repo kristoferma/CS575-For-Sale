@@ -26,37 +26,68 @@ export default class PlayerContainer extends Component {
         }&playerID=${playerID - 1}&action=fold`
       )
   }
-
   render() {
     return (
       <div className="flex-container">
-        {this.props.players.map(player => (
-          <div className="playerInformation">
-            <Player userID={player.userID} money={player.money} />
-            <BetStatus
-              betAmount={player.betAmount}
-              playerHasPlayed={player.playerHasPlayed}
-            />
-            {this.props.phase2.length === 30 ? (
-              <div className="bet_fold_buttons">
-                <input
-                  type="button"
-                  onClick={this.handleBetClick(player.playerNumber).bind(this)}
-                  value="Bet"
-                  id="bet_button"
-                  className="btn btn-success"
+        {this.props.phase1.length === 0 && this.props.players[0].moneyGained
+          ? this.props.players.map(player => (
+              <div className="playerInformation">
+                <Player
+                  userID={player.userID}
+                  money={
+                    player.moneyGained.reduce((a, b) => a + b, 0) + player.money
+                  }
                 />
-                <input
-                  type="button"
-                  onClick={this.handleFoldClick(player.playerNumber).bind(this)}
-                  value="Fold"
-                  className="btn btn-danger"
-                  id="fold_button"
+                <BetStatus
+                  betAmount={player.betAmount}
+                  playerHasPlayed={player.playerHasPlayed}
                 />
               </div>
-            ) : null}
-          </div>
-        ))}
+            ))
+          : this.props.players.map(player => (
+              <div className="playerInformation">
+                <Player
+                  userID={player.userID}
+                  money={player.money}
+                  isCurrentPlayer={
+                    this.props.currentPlayerTurn === player.playerNumber - 1
+                  }
+                />
+                <BetStatus
+                  betAmount={player.betAmount}
+                  playerHasPlayed={player.playerHasPlayed}
+                />
+                {this.props.phase2.length === 30 &&
+                this.props.numberOfTurn > 0 ? (
+                  <div className="bet_fold_buttons">
+                    <input
+                      type="button"
+                      onClick={this.handleBetClick(player.playerNumber).bind(
+                        this
+                      )}
+                      disabled={
+                        this.props.currentPlayerTurn !== player.playerNumber - 1
+                      }
+                      value="Bet"
+                      id="bet_button"
+                      className="btn btn-success"
+                    />
+                    <input
+                      type="button"
+                      onClick={this.handleFoldClick(player.playerNumber).bind(
+                        this
+                      )}
+                      disabled={
+                        this.props.currentPlayerTurn !== player.playerNumber - 1
+                      }
+                      value="Fold"
+                      className="btn btn-danger"
+                      id="fold_button"
+                    />
+                  </div>
+                ) : null}
+              </div>
+            ))}
       </div>
     )
   }
