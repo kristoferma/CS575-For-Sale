@@ -274,7 +274,7 @@ startNewRoundPhase2 = gameID => {
   return gameRef.once('value').then(gameData => {
     const game = gameData.val()
 
-    if (!game.phase2) return false
+    if (!game.phase2 && !game.cardsInPlay) return false
 
     const phase2 = game.phase2
     const randomMoneyCards = Array.from(
@@ -290,6 +290,7 @@ startNewRoundPhase2 = gameID => {
 
     newPlayerInfo = game.players.forEach((player, index) => {
       updates[`players/${index}/playerHasPlayed`] = false
+      updates[`players/${index}/betAmount`] = 0
     })
     gameRef.update(updates)
     return true

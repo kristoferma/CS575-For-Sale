@@ -60,7 +60,11 @@ export default class GameView extends Component {
 
   render() {
     //return (<pre>{JSON.stringify(this.state, null, 2)}</pre>);
-    if (this.state.phase1.length == 0 && this.state.phase2.length == 0)
+    if (
+      this.state.phase1.length === 0 &&
+      this.state.phase2.length === 0 &&
+      this.state.cardsInPlay.length === 0
+    )
       return <WinningView players={this.state.players} />
     return (
       <div className="game_board">

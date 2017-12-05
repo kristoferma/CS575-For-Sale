@@ -38,10 +38,12 @@ export default class PlayerContainer extends Component {
                     player.moneyGained.reduce((a, b) => a + b, 0) + player.money
                   }
                 />
-                <BetStatus
-                  betAmount={player.betAmount}
-                  playerHasPlayed={player.playerHasPlayed}
-                />
+                {this.props.phase2.length === 30 ? (
+                  <BetStatus
+                    betAmount={player.betAmount}
+                    playerHasPlayed={player.playerHasPlayed}
+                  />
+                ) : null}
               </div>
             ))
           : this.props.players.map(player => (
