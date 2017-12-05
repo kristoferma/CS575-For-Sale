@@ -37,7 +37,7 @@ export default class PlayerContainer extends Component {
               betAmount={player.betAmount}
               playerHasPlayed={player.playerHasPlayed}
             />
-            {this.props.phase2.length === 30 ? (
+            {this.props.phase2.length === 30 && this.props.numberOfTurn > 0 ? (
               <div className="bet_fold_buttons">
                 <input
                   type="button"
