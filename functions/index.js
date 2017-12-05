@@ -344,7 +344,11 @@ exports.phase2Play = functions.https.onRequest((req, res) =>
                       cardsInPlay.pop()
                     )
                   : [cardsInPlay.pop()]
-                selectedCards.push({card: card.card, player: card.player, money: moneyGained})
+                selectedCards.push({
+                  card: card.card,
+                  player: game.players[card.player].userID,
+                  money: moneyGained
+                })
                 updates[`players/${card.player}/moneyGained`] = moneyGained
                 updates[`players/${card.player}/selectedCard`] = null
                 updates[`players/${card.player}/playerHasPlayed`] = false
