@@ -165,11 +165,10 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
 
         const newMoney = player.money - moneySpent
         const cardsInPlay = game.cardsInPlay
-        const cardGained = cardsInPlay
-          .sort()
-          .reverse()
-          .pop()
+        console.log(cardsInPlay)
+        const cardGained = cardsInPlay.sort((a, b) => a < b).pop()
 
+        console.log(cardGained)
         let newHand = player.hand
           ? player.hand.concat(cardGained)
           : [cardGained]
@@ -283,7 +282,7 @@ exports.phase2Play = functions.https.onRequest((req, res) =>
           gameRef.once('value').then(gameData => {
             const game = gameData.val()
             if (game.players.every(player => player.playerHasPlayed)) {
-              cardInPlay = game.cardsInPlay.sort().reverse()
+              cardInPlay = game.cardsInPlay.sort((a, b) => a < b)
               cardsSelected = game.players
                 .map((player, index) => ({
                   card: player.selectedCard,
