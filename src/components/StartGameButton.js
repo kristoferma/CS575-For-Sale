@@ -11,7 +11,7 @@ export default class StartGameButton extends Component {
   handleClick(event) {
     event.preventDefault()
     fetch(
-      `http://localhost:5000/cs575-for-sale/us-central1/createNewGame/?userID=${
+      `https://us-central1-cs575-for-sale.cloudfunctions.net/createNewGame?userID=${
         this.state.userID
       }&playerCount=${this.state.playerCount}`
     )

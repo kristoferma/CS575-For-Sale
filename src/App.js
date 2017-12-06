@@ -18,7 +18,7 @@ class App extends Component {
         <div className="App">
           <Header />
           <Route exact path="/" component={MainMenu} />
-          <Route path="/game/:gameID" component={GameView} />
+          <Route exact path="/game/:gameID" component={GameView} />
         </div>
       </BrowserRouter>
     )

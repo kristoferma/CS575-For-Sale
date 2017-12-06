@@ -14,7 +14,7 @@ export default class StartGameButton extends Component {
   handleClick(event) {
     event.preventDefault()
     fetch(
-      `http://localhost:5000/cs575-for-sale/us-central1/joinGame/?userID=${
+      `https://us-central1-cs575-for-sale.cloudfunctions.net/joinGame/?userID=${
         this.state.userID
       }&gameID=${this.state.gameID}`
     )

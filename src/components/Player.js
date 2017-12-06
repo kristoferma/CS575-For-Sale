@@ -6,7 +6,6 @@ import './../App.css'
 
 export default class Player extends Component {
   render() {
-    console.log(this.props)
     return (
       <div
         class={`player_card ${

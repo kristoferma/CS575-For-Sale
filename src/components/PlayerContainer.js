@@ -6,7 +6,6 @@ import BetStatus from './BetStatus'
 export default class PlayerContainer extends Component {
   constructor(props) {
     super(props)
-    console.log(props)
     this.state = {
       playerIndex: window.localStorage.getItem('playerIndex')
     }
@@ -15,7 +14,7 @@ export default class PlayerContainer extends Component {
   handleBetClick(playerID) {
     return () =>
       fetch(
-        `http://localhost:5000/cs575-for-sale/us-central1/phase1Play?gameID=${
+        `https://us-central1-cs575-for-sale.cloudfunctions.net/phase1Play?gameID=${
           this.props.gameID
         }&playerID=${playerID - 1}&action=bet`
       )
@@ -24,7 +23,7 @@ export default class PlayerContainer extends Component {
   handleFoldClick(playerID) {
     return () =>
       fetch(
-        `http://localhost:5000/cs575-for-sale/us-central1/phase1Play?gameID=${
+        `https://us-central1-cs575-for-sale.cloudfunctions.net/phase1Play?gameID=${
           this.props.gameID
         }&playerID=${playerID - 1}&action=fold`
       )

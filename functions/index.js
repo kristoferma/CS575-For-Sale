@@ -202,10 +202,8 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
 
         const newMoney = player.money - moneySpent
         const cardsInPlay = game.cardsInPlay
-        console.log(cardsInPlay)
         const cardGained = cardsInPlay.sort((a, b) => a < b).pop()
 
-        console.log(cardGained)
         let newHand = player.hand
           ? player.hand.concat(cardGained)
           : [cardGained]
@@ -234,6 +232,8 @@ exports.phase1Play = functions.https.onRequest((req, res) =>
           })
       } else if (action == 'bet') {
         const betAmount = maxBet(game.players) + 1
+        if (betAmount > game.players[game.currentPlayerTurn].money)
+          return res.sendStatus(400)
         const currentPlayerTurn = nextPlayersTurn(
           game.currentPlayerTurn,
           game.numberOfPlayers,
@@ -311,7 +311,7 @@ exports.phase2Play = functions.https.onRequest((req, res) =>
         return res.status(400).end()
       }
 
-      const cardsInPlay = game.cardsInPlay
+      let cardsInPlay = game.cardsInPlay
       card = Number(action)
 
       let hand = player.hand
@@ -328,13 +328,13 @@ exports.phase2Play = functions.https.onRequest((req, res) =>
           gameRef.once('value').then(gameData => {
             const game = gameData.val()
             if (game.players.every(player => player.playerHasPlayed)) {
-              cardInPlay = game.cardsInPlay.sort((a, b) => a < b)
+              cardsInPlay = game.cardsInPlay.sort((a, b) => a < b)
               cardsSelected = game.players
                 .map((player, index) => ({
                   card: player.selectedCard,
                   player: index
                 }))
-                .sort((obj1, obj2) => obj1.card < obj2.card)
+                .sort((obj1, obj2) => obj1.card > obj2.card)
 
               const updates = {}
               selectedCards = []
@@ -354,9 +354,10 @@ exports.phase2Play = functions.https.onRequest((req, res) =>
                 updates[`players/${card.player}/playerHasPlayed`] = false
               })
               updates[`selectedCards`] = selectedCards
+              updates[`cardsInPlay`] = []
               gameRef.update(updates)
-
-              startNewRoundPhase2(gameID)
+              if (game.phase2 || game.phase2.length > 0)
+                startNewRoundPhase2(gameID)
             }
             res.status(200).end()
           })

@@ -45,6 +45,7 @@ export default class GameView extends Component {
         })
         if (!game.phase1) game.phase1 = []
         if (!game.phase2) game.phase2 = []
+        if (!game.cardsInPlay) game.cardsInPlay = []
         this.setState(game)
       })
   }
@@ -52,7 +53,7 @@ export default class GameView extends Component {
   phase2ClickHandler(card) {
     return () =>
       fetch(
-        `http://localhost:5000/cs575-for-sale/us-central1/phase2Play?gameID=${
+        `https://us-central1-cs575-for-sale.cloudfunctions.net/phase2Play?gameID=${
           this.props.match.params.gameID
         }&playerID=${PLAYER}&action=${card}`
       )
@@ -76,7 +77,6 @@ export default class GameView extends Component {
           phase1={this.state.phase1}
           phase2={this.state.phase2}
         />
-        {console.log(this.state.players)}
         <div className="round_view">
           {this.state.cardsInPlay.length !== 0
             ? this.state.cardsInPlay.map(
@@ -91,14 +91,19 @@ export default class GameView extends Component {
           <div className="deck">
             <div className="innerDeck" />
           </div>
-          { (this.state.selectedCards) ?
-          <div className="selected_cards">
-            <h2>Previous round:</h2>
-            {this.state.selectedCards.map(selectedCard => (
-              <p><span className = "user">{selectedCard.player+": "}</span>{`Property: ${selectedCard.card} Money Gained: ${selectedCard.money}`}</p>
-            ))}
-          </div>
-          : null}
+          {this.state.selectedCards ? (
+            <div className="selected_cards">
+              <h2>Previous round:</h2>
+              {this.state.selectedCards.map(selectedCard => (
+                <p>
+                  <span className="user">{selectedCard.player + ': '}</span>
+                  {`Property: ${selectedCard.card} Money Gained: ${
+                    selectedCard.money
+                  }`}
+                </p>
+              ))}
+            </div>
+          ) : null}
         </div>
         <div className="players_card">
           {this.state.players.length !== 0 && this.state.players[PLAYER].hand
